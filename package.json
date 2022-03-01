@@ -7,9 +7,9 @@
 	"author": "Whitekiwi <jh145478@gmail.com>",
 	"scripts": {
 		"lint": "eslint \"{{src}/**/*.ts,**.js}\" --fix",
-		"test": "jest --forceExit",
-		"test:watch": "jest --watch",
-		"test:cov": "jest --coverage --forceExit",
+		"test": "jest --forceExit --testPathIgnorePatterns='.e2e.*'",
+		"test:watch": "jest --watch --testPathIgnorePatterns='.e2e.*'",
+		"test:cov": "jest --coverage --forceExit --testPathIgnorePatterns='.e2e.*'",
 		"prebuild": "rimraf ./lib",
 		"build": "yarn run prebuild && tsc --project tsconfig.build.json",
 		"script": "ts-node .scripts/index.ts"
