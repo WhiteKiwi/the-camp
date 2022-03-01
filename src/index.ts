@@ -1,4 +1,2 @@
-async function main() {
-	console.log('test');
-}
-main();
+export * from './client';
+export * from './core/types';
