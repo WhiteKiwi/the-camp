@@ -7,6 +7,8 @@ import {
 	registerCafeRequester as _registerCafeRequester,
 	RegisterSoldierDto,
 	registerSoldierRequester as _registerSoldierRequester,
+	SendLetterDto,
+	sendLetterRequester as _sendLetterRequester,
 } from './requesters';
 
 export class TheCampService {
@@ -14,6 +16,7 @@ export class TheCampService {
 		private readonly loginRequester = _loginRequester,
 		private readonly registerSoldierRequester = _registerSoldierRequester,
 		private readonly registerCafeRequester = _registerCafeRequester,
+		private readonly sendLetterRequester = _sendLetterRequester,
 	) {}
 
 	async login(credential: Credential): Promise<TheCampSession> {
@@ -35,6 +38,10 @@ export class TheCampService {
 		session: TheCampSession,
 	): Promise<void> {
 		await this.registerCafeRequester.request(dto, session);
+	}
+
+	async sendLetter(dto: SendLetterDto, session: TheCampSession): Promise<void> {
+		await this.sendLetterRequester.request(dto, session);
 	}
 }
 export const theCampService = new TheCampService();

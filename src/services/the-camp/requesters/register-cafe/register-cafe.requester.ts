@@ -1,4 +1,5 @@
 import { TheCampSession } from '@common/types';
+import { Parameter } from '@core/http';
 import {
 	관계,
 	관계CodeMap,
@@ -9,7 +10,6 @@ import {
 } from '@core/types';
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { Parameter } from '../../../../core/http';
 import { assertsResponse } from './asserts-response';
 
 export class RegisterCafeRequester {
