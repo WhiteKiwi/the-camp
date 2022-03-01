@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Install
+      - name: Install
+        run: |
+          yarn
+
+      # Test
+      - name: Test
+        run: |
+          yarn run test
+      #     yarn run test:cov
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v1
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
