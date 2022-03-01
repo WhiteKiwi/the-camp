@@ -19,7 +19,8 @@
 		"noImplicitAny": true,
 		"noUnusedLocals": true,
 		"paths": {
-			"@core/*": ["./src/core/*"]
+			"@core/*": ["./src/core/*"],
+			"@common/*": ["./src/common/*"]
 		}
 	}
 }

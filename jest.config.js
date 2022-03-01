@@ -9,6 +9,7 @@ module.exports = {
 	coveragePathIgnorePatterns: ['<rootDir>/index.ts'],
 	moduleNameMapper: {
 		'^@core/(.*)$': '<rootDir>/core/$1',
+		'^@common/(.*)$': '<rootDir>/common/$1',
 	},
 	coverageDirectory: '../coverage',
 	testEnvironment: 'node',

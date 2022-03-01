@@ -1,4 +1,5 @@
-import { Parameter, Session } from '@core/http';
+import { TheCampSession } from '@common/types';
+import { Parameter } from '@core/http';
 import { Credential } from '@core/types';
 import axios, { AxiosRequestConfig } from 'axios';
 
@@ -7,7 +8,7 @@ import { parseLogin } from './parse-login';
 export class LoginRequester {
 	constructor(private readonly parse = parseLogin) {}
 
-	async request(credential: Credential): Promise<Session> {
+	async request(credential: Credential): Promise<TheCampSession> {
 		const response = await axios.post(
 			'https://www.thecamp.or.kr/login/loginA.do',
 			this.createPayload(credential),

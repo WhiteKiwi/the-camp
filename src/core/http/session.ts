@@ -1,5 +1,6 @@
 import { Cookie } from './cookie';
 
-export interface Session {
+export interface Session<T = undefined> {
 	cookies: Cookie[];
+	extra?: T;
 }

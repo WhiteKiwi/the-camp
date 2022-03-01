@@ -1,12 +1,12 @@
-import { Cookie, Session } from '@core/http';
+import { TheCampSession } from '@common/types';
+import { Cookie } from '@core/http';
 import { AxiosResponse } from 'axios';
 
-export function parseLogin(response: AxiosResponse): Session {
+export function parseLogin(response: AxiosResponse): TheCampSession {
 	assertsResponse(response);
 
 	const cookies: Cookie[] = [];
 	const setCookie = response.headers['set-cookie'];
-	// TODO: asserts
 
 	if (!setCookie?.length) {
 		throw new Error('');
@@ -17,7 +17,7 @@ export function parseLogin(response: AxiosResponse): Session {
 		cookies.push({ key, value });
 	}
 
-	return { cookies };
+	return { cookies, extra: { IUID: extractIUIDFromCookies(cookies) } };
 }
 
 function assertsResponse(response: any) {
@@ -29,6 +29,14 @@ function assertsResponse(response: any) {
 
 	if (response.data.resultCd !== '0000')
 		throw new Error(
-			response.data?.resultMsg || '알 수 없는 오류가 발생하였습니다',
+			response.data?.resultMsg || '알 수 없는 오류가 발생하였습니다.',
 		);
+}
+
+function extractIUIDFromCookies(cookies: Cookie[]): string {
+	const IUID = cookies.find((cookie) => cookie.key === 'iuid')?.value;
+	if (!IUID) {
+		throw new Error('알 수 없는 오류가 발생하였습니다.');
+	}
+	return IUID;
 }
