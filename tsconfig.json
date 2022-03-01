@@ -21,6 +21,11 @@
 		"paths": {
 			"@core/*": ["./src/core/*"],
 			"@common/*": ["./src/common/*"]
-		}
+		},
+		// Transform paths in output
+		"plugins": [
+			{ "transform": "typescript-transform-paths" },
+			{ "transform": "typescript-transform-paths", "afterDeclarations": true }
+		]
 	}
 }
