@@ -5,22 +5,26 @@ import 실패_가입회원아님 from './test/실패-가입회원아님.json';
 
 describe('parseLogin', () => {
 	it('성공', () => {
-		const cookies = parseLogin(성공 as any);
-
-		expect(cookies).toEqual([
-			{ key: 'userId', value: 'paul2314%40naver.com' },
-			{ key: 'Token', value: 'sUl%2B4ShTmCqsX%2BXtf7X8MQ%3D%3D' },
-			{ key: 'iuid', value: '5302760' },
-			{
-				key: 'nickname',
-				value: '%EC%A0%95%EC%9B%90%EB%B0%B0_%28%EC%9D%BC%EB%B0%98%29',
+		const session = parseLogin(성공 as any);
+		expect(session).toEqual({
+			cookies: [
+				{ key: 'userId', value: 'paul2314%40naver.com' },
+				{ key: 'Token', value: 'sUl%2B4ShTmCqsX%2BXtf7X8MQ%3D%3D' },
+				{ key: 'iuid', value: '5302760' },
+				{
+					key: 'nickname',
+					value: '%EC%A0%95%EC%9B%90%EB%B0%B0_%28%EC%9D%BC%EB%B0%98%29',
+				},
+				{ key: 'name', value: '%EC%A0%95%EC%9B%90%EB%B0%B0' },
+				{ key: 'memberGradeCd', value: '0000340003' },
+				{ key: 'userId', value: 'paul2314%40naver.com' },
+				{ key: 'checkAutoLogin', value: 'off' },
+				{ key: 'checkSaveId', value: 'off' },
+			],
+			extra: {
+				IUID: '5302760',
 			},
-			{ key: 'name', value: '%EC%A0%95%EC%9B%90%EB%B0%B0' },
-			{ key: 'memberGradeCd', value: '0000340003' },
-			{ key: 'userId', value: 'paul2314%40naver.com' },
-			{ key: 'checkAutoLogin', value: 'off' },
-			{ key: 'checkSaveId', value: 'off' },
-		]);
+		});
 	});
 
 	it('실패_credentail', () => {

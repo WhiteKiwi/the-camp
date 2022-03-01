@@ -3,6 +3,8 @@ import { Credential } from '@core/types';
 
 import {
 	loginRequester as _loginRequester,
+	RegisterCafeDto,
+	registerCafeRequester as _registerCafeRequester,
 	RegisterSoldierDto,
 	registerSoldierRequester as _registerSoldierRequester,
 } from './requesters';
@@ -11,6 +13,7 @@ export class TheCampService {
 	constructor(
 		private readonly loginRequester = _loginRequester,
 		private readonly registerSoldierRequester = _registerSoldierRequester,
+		private readonly registerCafeRequester = _registerCafeRequester,
 	) {}
 
 	async login(credential: Credential): Promise<TheCampSession> {
@@ -25,6 +28,13 @@ export class TheCampService {
 		session: TheCampSession,
 	): Promise<void> {
 		await this.registerSoldierRequester.request(dto, session);
+	}
+
+	async registerCafe(
+		dto: RegisterCafeDto,
+		session: TheCampSession,
+	): Promise<void> {
+		await this.registerCafeRequester.request(dto, session);
 	}
 }
 export const theCampService = new TheCampService();
