@@ -7,8 +7,10 @@ describe('parseUnitSoldiers', () => {
 	it('성공', () => {
 		const data = readFileSync(join(__dirname, 'test/성공.txt'), 'utf-8');
 
-		expect(parseUnitSoldiers({ data } as any)).toEqual({
-			훈련병Id: '1561180',
-		});
+		expect(parseUnitSoldiers({ data } as any)).toEqual([
+			{
+				훈련병Id: '1561180',
+			},
+		]);
 	});
 });
