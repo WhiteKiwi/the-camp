@@ -31,14 +31,14 @@ export class RegisterCafeRequester {
 		관계,
 		입영부대,
 		입영일,
-		생년월일Code,
+		생년월일,
 		입영부대TypeCode,
 	}: RegisterCafeDto): string {
 		return new Parameter({
 			regOrder: '',
 			name: 이름,
 			enterDate: 입영일.replaceAll('-', ''),
-			birth: 생년월일Code,
+			birth: 생년월일.replaceAll('-', ''),
 			trainUnitTypeCd: 입영부대TypeCode,
 			trainUnitCd: 입영부대CodeMap[입영부대],
 			grpCd: 군종CodeMap[군종],
@@ -80,7 +80,7 @@ export interface RegisterCafeDto {
 	// yyyy-MM-dd
 	입영일: string;
 
-	생년월일Code: string;
+	생년월일: string;
 	입영부대TypeCode: string;
 }
 

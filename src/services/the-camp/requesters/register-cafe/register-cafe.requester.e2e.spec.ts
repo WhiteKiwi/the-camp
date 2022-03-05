@@ -10,7 +10,7 @@ describe.skip('RegisterCafeRequester e2e', () => {
 		await registerCafeRequester.request(
 			{
 				이름: '홍길동',
-				생년월일Code: '08IyuIy6/tXS/vveGiNc+Q==',
+				생년월일: '2001-01-01',
 				입영일: '2022-02-14',
 				군종: '육군',
 				입영부대: '육군훈련소-논산',

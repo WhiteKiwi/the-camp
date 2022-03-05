@@ -30,13 +30,6 @@ async function main() {
 			생년월일: '2001-01-01',
 			입영일: '2022-02-14',
 			전화번호: '01012341234',
-
-			// 아래 값들은 현재 직접 뽑아야 함
-			// TODO: 사이트에서 긁어오게 작업하기
-			생년월일Code: '08IyuIy6/tXS/vveGiNc+Q==', // birth
-			입영부대TypeCode: '0000140001', // trainUnitTypeCd
-			입영부대EduId: '14030', // trainUnitEduSeq
-			훈련병Id: '', // traineeMgrSeq
 		},
 		{
 			작성자: '장지훈',

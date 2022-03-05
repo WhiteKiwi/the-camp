@@ -5,6 +5,7 @@ module.exports = {
 	transform: {
 		'^.+\\.(t|j)s$': 'ts-jest',
 	},
+	setupFiles: ['dotenv/config'],
 	collectCoverageFrom: ['**/*.(t|j)s', '!**/index.ts'],
 	coveragePathIgnorePatterns: ['<rootDir>/index.ts'],
 	moduleNameMapper: {

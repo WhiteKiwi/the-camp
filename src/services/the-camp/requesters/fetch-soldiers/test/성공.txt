@@ -1,0 +1,3412 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>메인</title>
+
+
+
+
+
+
+
+
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width">
+<meta name="apple-mobile-web-app-title" content="THECAMP"/>
+<meta name="robots" content="index,nofollow"/>
+<meta name="description" content="대국민 국군 소통 서비스"/>
+<meta property="og:title" content="더캠프">
+<meta property="og:url" content="https://www.thecamp.or.kr/">
+<meta property="og:image" content="https://www.thecamp.or.kr/images/thecamp.png">
+<meta property="og:description" content="대국민 국군 소통 서비스"/>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="THECAMP">
+<meta name="twitter:url" content="https://www.thecamp.or.kr/">
+<meta name="twitter:image" content="https://www.thecamp.or.kr/images/thecamp.png">
+<meta name="twitter:description" content="대국민 국군 소통 서비스"/>
+
+<link rel="icon" type="image/x-ico"  href="/images/favicon.ico"/>
+<link rel="shortcut icon" type="image/x-ico"  href="/images/favicon.ico"/>
+<!-- CSS Library -->
+<link href="/css/jquery-ui.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/ax5grid.css"/>
+<link rel="stylesheet" type="text/css" href="/css/import.css">
+<link rel="stylesheet" href="/css/swiper.min.css">
+<!-- CSS Custom -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K8M7CTD');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115500731-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-115500731-5');
+</script>
+
+<script data-ad-client="ca-pub-6575005971712756" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script type="text/javascript">
+	var PAGE_CONTEXT = "";
+	var sCdnFileSrcUrl = "https://contents.thecamp.or.kr";
+	var serverMode = "real";
+	
+	var sVideoCommCd = "0000210001";
+	var sImageCommCd = "0000210002";
+	var sFileCommCd = "0000210003";
+</script>
+
+<!-- Javascript Library -->
+<script src="/js/lib/jquery-1.8.2.min.js" ></script>
+<script src="/js/lib/jquery-ui.min.js" ></script>
+<script src="/js/lib/ax5core.min.js" ></script>
+<script src="/js/lib/ax5grid.min.js" ></script>
+<script src="/js/lib/moment.min.js" ></script>
+<script src="/js/lib/handlebars.min.js" ></script>
+
+<!-- Javascript Custom -->
+<script src="/js/CommonUtil.js" ></script>
+<script src="/js/CommonError.js" ></script>
+<script src="/js/comUi.js"></script>
+<script src="/js/CodeMgr.js"></script>
+<script src="/js/ThumbSizeMgr.js"></script>
+<script src="/js/handlebarsHelpers.js"></script>
+<script src="/js/MobilePagingUtil.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	});
+
+	//CDN 업로드 파일 full url 세팅
+	function fn_getFileSrcUrl(obj) {
+		
+		var cdnServerMode = "d";
+		
+		if(serverMode == "real") {
+			cdnServerMode = "p";
+		}
+		else if(serverMode == "stg") {
+			cdnServerMode = "s";
+		}
+		
+		var sFileType = obj.fileTypeCd;
+		var sImageThumbnailSize = '';
+		
+		if(obj.filePath == '') {
+			return "";
+		}
+		
+		var sFilePath = sCdnFileSrcUrl + obj.filePath + obj.savedFileNm;
+		
+		if(obj.extNm != null && obj.extNm != '' && typeof obj.extNm != 'undefined') {
+			sFilePath += '.' + obj.extNm;
+		}
+			
+		if(sFileType == sImageCommCd) {
+			
+			if(obj.thumb == null || obj.thumb == '' || typeof obj.thumb == 'undefined') {
+				sImageThumbnailSize = thumbSizeMgr.defaultOriginSize;
+			}
+			else {
+				sImageThumbnailSize = obj.thumb;
+			}
+			
+			sFilePath += "?d=" + sImageThumbnailSize + "&s=" + cdnServerMode;
+		}
+		else {
+			sFilePath += "?s=" + cdnServerMode;
+		}
+		
+		return sFilePath;
+	}
+		
+</script>
+
+<script type='text/javascript'>
+	var newCheck = false
+$(document).ready(function() {
+	if(newCheck == true) {// 필수약관 변경내역이 있을 경우 newCheck == true
+		location.href = PAGE_CONTEXT + "/term/viewTermAgreeRe.do";
+	}
+});
+
+//보고싶은군인 검색
+function fn_missSoldierSearch() {
+	
+	location.href = PAGE_CONTEXT + "/missSoldier/viewMissSoldierSearch.do";
+}
+
+//자대배치결과 조회
+function fn_mainUnitResultPop(name, birth, enterDate, unitCd, trainUnitNm){
+
+	var url = PAGE_CONTEXT + "/missSoldier/viewTraineeNormalUnitResult.do?name=" + encodeURI(name) + "&birthDay=" + birth 
+			+ "&enterDate=" + enterDate + "&unitCd=" + unitCd + "&trainUnitNm=" + encodeURI(trainUnitNm);
+	
+	window.open(url,
+			"자대배치결과 조회", 
+			"toolbar=no,scrollbars=yes,resizable=yes,top=100,left=450,width=1000,height=800"
+	);
+	
+	
+}
+
+//자대배치결과조회
+function fn_missSoldierDetail(regOrder){
+	
+	location.href = PAGE_CONTEXT + "/missSoldier/viewMissSoldierDetail.do?regOrder=" + regOrder;
+	
+}
+
+//쪽지보내기
+function fn_messageSendLink(iuid, nickname) {
+
+	var param = {
+			revIuid     : iuid,   /* 옵션:수신자 정보 */
+			revNickname : nickname,   /* 옵션:발신자 닉네임(default: 기본프로필 닉네임) */
+			isPush      : true  /* 옵션:알림푸시여부(default: false) */
+		};
+		//console.log(param);
+		myPopup.note.send(param, function(result){
+			// TODO
+		});
+};
+
+//카페바로가기
+function fn_cafeMainLink(){
+	
+	location.href = PAGE_CONTEXT + "/eduUnitCafe/viewEduUnitCafeMain.do";
+	
+}
+
+//카페바로가기
+function fn_cafeMainLink2(trainUnitCd, trainUnitEduSeq){
+	
+	location.href = PAGE_CONTEXT + "/eduUnitCafe/viewCompCafeMain.do?trainUnitEduSeq="+trainUnitEduSeq+"&trainUnitCd="+trainUnitCd;
+	
+}
+
+//위문편지 바로가기
+function fn_consolLetterLink(trainUnitEduSeq,trainUnitCd,trainUnitNm,enterDate,grpCd,grpNm ){
+	
+	var strParam = "trainUnitEduSeq="+trainUnitEduSeq+"&trainUnitCd="+trainUnitCd+"&trainUnitNm="+encodeURI(trainUnitNm)+"&enterDate="+enterDate+"&grpCd="+grpCd+"&grpNm="+encodeURI(grpNm);
+	
+	location.href = PAGE_CONTEXT + "/consolLetter/viewConsolLetterMain.do?" + strParam;
+	
+}
+
+//보고싶은군인정보 수정
+function fn_missSoldierUpdate(regOrder){
+
+	if(regOrder != null && regOrder != "") {
+		$("#regOrder").val(regOrder);
+	}
+	//보고싶은 군인정보 수정
+	$("#mainForm").attr("action", PAGE_CONTEXT + "/missSoldier/viewMissSoldierUpdate.do");
+	$("#mainForm").submit();
+	
+	//location.href = PAGE_CONTEXT + "/missSoldier/viewMissSoldierUpdate.do";
+	
+}
+
+//보고싶은군인정보 수정(alert-확인버튼)
+function fn_missSoldierUpdate2(){
+	//보고싶은 군인정보 수정
+	$("#mainForm").attr("action", PAGE_CONTEXT + "/missSoldier/viewMissSoldierUpdate.do");
+	$("#mainForm").submit();
+	
+	//location.href = PAGE_CONTEXT + "/missSoldier/viewMissSoldierUpdate.do";
+	
+}
+
+//보고싶은군인 메인상세
+function fn_missSoldierMainDetail(regOrder){
+	
+	$("#regOrder").val(regOrder);
+	
+	//보고싶은 군인정보 수정
+	$("#mainForm").attr("action", PAGE_CONTEXT + "/missSoldier/viewMissSoldierMainDetail.do");
+	$("#mainForm").submit();
+	
+	//location.href = PAGE_CONTEXT + "/missSoldier/viewMissSoldierMainDetail.do";
+	
+}
+
+//일반->군인회원전환
+function fn_memberToSoldier(){
+	location.href = PAGE_CONTEXT + "/member/viewMemberChangeSoldier.do";
+	
+}
+
+//나를 보고싶어 하는 사람
+function fn_missToMeList(){
+	//
+	window.open(PAGE_CONTEXT + "/missSoldier/viewMissSoldierToMeList.do",
+			"나를 보고싶어 하는 사람", 
+			"toolbar=no,scrollbars=yes,resizable=yes,top=100,left=450,width=600,height=900"
+		);
+}
+
+//공지사항목록
+function fn_noticeList(){
+	
+	location.href = PAGE_CONTEXT + "/notice/viewNoticeList.do";
+	
+}
+
+//공지사항상세
+function fn_noticeDetail(noticeMgrSeq){
+	
+	location.href = PAGE_CONTEXT + "/notice/viewNoticeDetail.do?noticeMgrSeq=" + noticeMgrSeq;
+	
+}
+
+
+//캠프초대 alert
+function fn_campInvitePop(regOrder, name, phoneNo, smsMessage) {
+	
+	if(smsMessage == "") {
+		alert("비회원인 경우만 더캠프 초대가 가능합니다.");
+		return false;
+	}
+	
+	if(phoneNo == null || phoneNo == "") {
+		//
+		$("#name2").text(name);
+		$("#divAlert2").show();
+	} else {
+		//
+		$("#name1").text(name);
+		$("#divAlert1").show();
+	}
+	
+	//초대메세지 정보
+	$("#regOrder").val(regOrder);
+	$("#inviteName").val(name);
+	$("#invitePhoneNo").val(phoneNo);
+	$("#inviteSmsMessage").val(smsMessage);
+}
+
+//Alert 닫기
+function fn_alertClose(alertType) {
+	
+	$("#divAlert" + alertType).hide();
+	
+	//초대메세지 정보
+	$("#regOrder").val("");
+	$("#inviteName").val("");
+	$("#invitePhoneNo").val("");
+	$("#inviteSmsMessage").val("");
+}
+
+//캠프 미가입회원 SMS 발송
+function fn_campInviteSms() {
+	
+	var broswerInfo = navigator.userAgent;
+
+	if(broswerInfo.toLowerCase().indexOf("android")>-1 || broswerInfo.toLowerCase().indexOf("iphone")>-1 || broswerInfo.toLowerCase().indexOf("ipad")>-1){
+		
+		var phoneList = [];
+		phoneList.push($("#invitePhoneNo").val());
+		
+		NativeCall("sendSms",{"number":phoneList,"message":$("#inviteSmsMessage").val()});
+		
+	} else {
+		alert("더캠프 회원초대는 더캠프 앱에서만 가능합니다.");
+	}
+	
+}
+
+/*
+ * 이벤트 좋아요 처리
+ */
+function fn_updateTalkContentLike(eventMgrSeq) {
+	var ajaxOption = {
+		url : "/event/content/insertTalkContentLikeA.do",
+		data : {
+			eventMgrSeq : eventMgrSeq
+		},
+		callbackFn : function(res) {
+			if (res.resultCd == "0000") {
+				if (res.flag == "insert") {
+					$("#likeCnt"+eventMgrSeq).addClass("active").html(Number($("#likeCnt"+eventMgrSeq).html()) + 1);
+				} else {
+					$("#likeCnt"+eventMgrSeq).removeClass("active").html(Number($("#likeCnt"+eventMgrSeq).html()) - 1);
+				}
+			}
+// 			alert(res.resultMsg);
+		}
+	}
+	commonUtil.fnAjaxCall(ajaxOption);
+}
+
+
+//다이닝코드
+function openDiningcode() {
+	if (navigator.geolocation) {
+		console.log("if");
+        navigator.geolocation.getCurrentPosition (
+        	function(pos) {
+        		window.open('https://m.diningcode.com/m_list.php?query=&lat='+pos.coords.latitude+'&lng='+pos.coords.longitude+'&utm_source=thecamp&utm_medium=app&utm_campaign=thecamp', '_blank');
+	        }, function(pos) {
+	        	console.log('Geolocation 에러');
+	        	window.open('https://m.diningcode.com/', '_blank');
+	        });
+    } else {
+    	console.log('Geolocation 불가 브라우저');
+    	window.open('https://m.diningcode.com/', '_blank');
+    }
+}
+
+
+//카페확인
+function fn_cafeCreateCheck(regOrder, name,enterDate,birth,trainUnitTypeCd,trainUnitCd, grpCd, traineeRelationshipCd ) {
+	enterDate = enterDate.replaceAll(".","");
+	var jsonData = {"regOrder":regOrder, "name":name, "enterDate":enterDate, "birth":birth, "trainUnitTypeCd":trainUnitTypeCd, "trainUnitCd":trainUnitCd, "grpCd":grpCd, "traineeRelationshipCd":traineeRelationshipCd};
+	
+	var ajaxOption = {
+		url: PAGE_CONTEXT + "/main/cafeCreateCheckA.do",
+		data: jsonData,
+		callbackFn: function(res) {
+			//console.log(res);
+			//alert(res.resultMsg);
+			if(res.resultCd == "0000") {
+				//alert("훈련소 메뉴에서 카페 가입을 하시기 바랍니다.");
+				alert("가입완료\n\n 위문편지 쓰기, 훈련병사진등 확인 가능합니다.");
+				fn_cafeMainLink();
+			} else if(res.resultCd == "9999") {
+				//alert("훈련소 메뉴에서 카페 가입을 하시기 바랍니다.");
+				alert("개설된 카페가 있습니다.\n카페 메뉴 이동 후 가입하시기 바랍니다.");
+			} else if(res.resultCd == "M001") {
+				alert("카페 개설전.\n\n" +
+						"1. \"오픈카페 전체보기\"에서 개설된 카페를 확인할 수 있습니다.\n\n" +
+						"2. 개설된 카페에 가입이 안된다면, 등록한 군인정보를 다시 확인해주세요.\n\n" +
+						"※ 군인정보가 불일치할 경우 카페가입이 안될 수 있습니다.");
+			} else if (res.resultCd == "M004") {
+				alert("카페 개설전.\n\n" +
+						"입영일부터 10일 이내에 개설됩니다.\n" +
+						"(오픈카페 전체보기를 통해 확인 가능합니다.)");
+			} else if (res.resultCd == "M005") {
+				alert("가입실패\n\n" +
+						"훈련병의 정보가 일치하지 않습니다.\n" +
+						"(입영부대, 입영일자, 이름, 생년월일 정보를 확인바랍니다.");
+			} else if (res.resultCd == "M006") {
+				alert("카페 오픈 대기중\n\n" +
+						"교육대 훈련병 정보 업데이트 후 카페 가입이 가능합니다.\n" +
+						"(입영일부터 10일 이내 업데이트 됩니다. )");
+			} else {
+				alert(res.resultMsg);
+			}
+		}
+	}
+		
+	commonUtil.fnAjaxCall(ajaxOption);
+}
+
+
+//육군정보 확인
+function fn_findArmyArrngmtResult(unitCd, enterDate, birthDay, name) {
+	enterDate = enterDate.replaceAll(".","");	
+	
+	var url = PAGE_CONTEXT + "/missSoldier/viewFindArmyArrngmtResult.do?unitCd=" + unitCd + "&enterDate=" + enterDate + "&birthDay=" + birthDay + "&name=" + name;
+
+	window.open(url,
+		"육군정보 확인", 
+		"toolbar=no,scrollbars=yes,resizable=yes,top=100,left=450,width=1200,height=800"
+	);
+
+}
+
+</script>
+
+</head>
+
+<body class="wrap">
+	<!-- header -->
+	
+	<script type="text/javascript">
+		var sIuid = "5302760";
+
+		$(document).ready(function() {
+			
+			if(sIuid != "") {
+				fn_selectMemberType();
+			}
+			
+			$("a.hom").attr("href", "/main/viewWebMain.do");
+
+		});
+		
+		function fn_selectMemberType() {
+			
+			var ajaxOption = {
+				url: "/member/selectMemberTypeA.do",
+				data: "",
+				callbackFn: fn_selectMemberType_callback
+			}
+			
+			commonUtil.fnAjaxCall(ajaxOption);
+		}
+		
+		function fn_selectMemberType_callback(res) {
+			
+			if(res != null) {
+				var strMemberInfo = res.nickname + "(" + res.memberTypeCdNm + ")";
+				$("#memberInfo").text(strMemberInfo);
+				
+				$(".user").attr("href","/member/viewMemberMgr.do");
+			}
+		}
+				
+        function fn_notePop(){
+            window.open('/note/viewList.do','쪽지함','width=700,height=740,status=no,toolbar=no,resizable=no,scrollbars=no')
+        }
+        function fn_lGuidePop(){
+			window.open('/consolLetter/consolLetterGuide.do','보고 싶은 군인 등록 방법 안내','width=780,height=740,status=no,toolbar=no,resizable=no,scrollbars=yes')
+		}
+
+	</script>
+	
+	<!-- header -->
+	<header class="header">
+		<div class="header-wrap">
+			
+				
+				
+					<h1><a href="/main/viewWebMain.do"><img src="/images/content/h1_logo.png" alt="THE CAMP"></a></h1>
+				
+			
+			<div class="function-menu">
+				<div class="user_info">
+					<a href="javascript:fn_lGuidePop()">
+						<span>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29px" height="28px">
+								<image x="0px" y="0px" width="29px" height="28px" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAcCAMAAACqEUSYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACK1BMVEX///8Arq8ESUoBkJEBnp8BoaEApaYApaYBoaIBnp8Bk5QEWFgCg4QAqqsAp6gAqqsAp6gBjIwBjIwAp6gAq6wBkZIBkpMArK0BlpcHAgICh4gBkJACiIgArK0BkJAEWFgApaYAqaoDbG0Bl5gBnJ0FLS0ApaYAqKkDYmICiYoBlJUBnJ0BoKEAoqMApKUAo6P///8BpaYAoqMApaYBoaEAp6gBnZ4BoaIChoYBlZYHAgIApKUAqKkEWFgBlJUBm5wETEw5uboAp6gDZGUzn5/h9fUAra4BmpvL5uYBoKH///8Bk5T///8Ap6gCh4j///////8BmZoDa2z////////////////7/f34/Pz2/Pz0+/v3/Pzh9PSF0dEBkpMDYmL///////////////8Ao6MArq9Lxsc7wcIbt7ez5+ep5OQNsrMUtLXS8fH+//8euLgAra5+1tf////G7e226OjQ8PABrq+k4uL3/Pwou7w4wMFXysqA19chuLnp+PgnursHsLHE7Ozl9/dExMT1/PxfzM03v8D2/PxezMym4+PU8fICr7DL7u9dzMx41NXg9fUEr7AStLXW8vIsvL1TyMkrvLxpz9AFsLEJsbIxvr5oz9Bjzc5by8xkzs5izc5nz88ApKV91tZ209QPs7TD7Oxz09Oh4eKl4uNq0ND8/v4iubrn9/dWycrw+voVtbb9/v7I7u5v0dLO7/AtvL3q+PiQ3NwJr7Bay8uG2dnrw8D9AAAAZHRSTlMAAAxcotXv8tqpZxIMe/L4jRRL5u9gc/6SAXaUQ/xgCuHxGniYBOX5EkVliKm11tIB3tHxtNOEpUBhAuH2DnGQB+HtFUT+/U7FeD2BnetUD8CLEg2S6vX3+vz+/vfCVgkdKigSenUw2gAAAAFiS0dEAIgFHUgAAAAHdElNRQfkCQkRDgZbHZ8zAAABkklEQVQoz2NggABGRkYmZhZWthR2Dk4ubkZGBlTAw8uXmpaeCgb8AoKokkLCqRmZWdmpUCAiiiwpJp6ak5uXnwoHBRKScEmpgtTUwqLiVGQgDZOUkQXySopKy5BlC+QgkvIKIF55UUVlalUlQlpRCSyrDOZUFxXV1NbVI+lWAUmqqoHZDY1FTc0trUiy6hpAWU0op629qKOzqxtJWgsoqw3j9BT19vVPQJLVAcrqQtkT6yZNLp+C7Gw9oKw+lD112vQZOSheZmcwMDBMnTltFhDMnjN37rz5s8CgPhXk9wVAvUapC4vQQTVYrzFQ1iR1EYZsee9ioKwpUNYMi2xR0RKgrDlQ1iJ1KYbcsuVFQFlLoKyV9Qp0yZWrUlenptrYgoLSbg267Np1qXWpqfbgWHBwXI8muyF1Y1GqkzMkCl1c0WQ3ZRVNcnOHRb8HhrM2bfaEpxwvVKktW6u3eSOlOh8U2e2pvn7IadI/AElyB19gEGp6Dg4JDQuPiIyKio6JjYtHywkGDAwJiUkgkJgM5kEAAD03/3YyNzKAAAAAAElFTkSuQmCC"></image>
+							</svg>
+						</span>
+						<span>카페 가입 방법</span>
+					</a>
+					<a href='#' class='user'><span class='mask'><img src='/images/icon/ico_man.png' alt='회원'></span><span id='memberInfo'></span></a>
+					<a href="/missSoldier/viewMissSoldierRegList.do">보고싶은 군인</a>
+					<a href='/consolLetter/viewAppMenuConsolLetterMain.do'>위문편지함</a>
+					<a href='javascript:fn_notePop();'>쪽지함</a>
+					<a href='/logout.do' class='logout'>로그아웃</a>
+					
+					
+				</div>
+				<ul class="gnb_menu clear">
+					<li class="g1">
+						<a href="/eduUnitCafe/viewEduUnitCafeMain.do">카페</a>
+						<ul class="depth2">
+
+							<li><a href="/eduUnitCafe/viewEduUnitCafeMain.do">카페(위문편지)</a></li>
+							<li><a href="/faqMgr/faqMgrList.do">예비군인을 위한 질문과답변</a></li>
+							<li><a href="/eduUnitCafe/consolationLetter.do">위문편지(안내)</a></li>
+							<li><a href="/location/locationInfoPage.do">신병교육대 위치안내</a></li>
+							<li><a href="/eduUnitCafe/myUnitSearch.do">자대배치조회</a></li>
+							<li><a href="/eduUnitCafe/viewAfterEduUnitCafeMain.do">후반기카페</a></li>
+						</ul>
+					</li>
+					<li class="g2">
+						<a href="/camp/main/main.do">캠프</a>
+						<ul class="depth2">
+							<li><a href="/camp/main/main.do">내 캠프</a></li>
+							<li><a href="/camp/main/viewSearchCamp.do">캠프 검색</a></li>
+							<li><a href="/camp/main/viewCreateCamp.do">캠프 만들기</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/talk/content/viewTalkContentList.do">토크</a>
+					</li>
+					<li><a href="/benefitZone/benefitZoneMain.do">혜택존</a></li>
+					<li>
+						<a href="/notice/viewNoticeList.do">고객센터</a>
+						<ul class="depth2">
+							
+							<li><a href="/notice/viewNoticeList.do">공지사항</a></li>
+							<li><a href="/faq/viewList.do">자주하는 질문</a></li>
+							<li><a href="/inquire/viewInquireList.do">1:1문의</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- //header -->
+	
+	
+
+	<!-- //header -->
+	
+	<!-- container -->
+	<div class="container">
+	<form id="mainForm" name="mainForm" method="post">
+	<input type="hidden" id="regOrder" name="regOrder" value=""/>
+	<input type="hidden" id="inviteName" name="inviteName" value=""/>
+	<input type="hidden" id="invitePhoneNo" name="invitePhoneNo" value=""/>
+	<input type="hidden" id="inviteSmsMessage" name="inviteSmsMessage" value=""/>
+	
+		<!-- contents -->
+		<div class="container-wrap main-sp">	
+			
+			<div class="location-area ty100">
+				<!-- <a href="#none" class="hom"></a>
+				<a href="#none">보고 싶은 군인</a> -->
+			</div>
+			
+			<!-- swiper-container -->
+			<div class="swiper-container main-vs">
+				<div class="swiper-wrapper">
+					
+					
+
+					<!-- 보고싶은 군인 목록 -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>183</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2022-09-01</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('1');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>김민석</span>
+															
+															<span>
+													
+														
+														
+														상병 4호봉
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 52주차</span>
+															
+														</div>
+														<div class="nick-txt">뀨</div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+														<a href="javascript:fn_cafeMainLink2('20020191700','6506');" class="btn-line-w">카페바로가기</a>
+													
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2021.03.02','20010928','김민석');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('1');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('1');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>210</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2022-09-28</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('2');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이예건</span>
+															
+															<span>
+													
+														
+														
+														상병 4호봉
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 51사단-화성 </span>
+															
+															
+															
+																<span>입영 48주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">경기 화성시 매송면</span>
+												<span class="temp">-0.3℃</span>
+												<span class="humid">69%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+														<a href="javascript:fn_cafeMainLink2('20121190200','6611');" class="btn-line-w">카페바로가기</a>
+													
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('3051000','2021.03.29','20010822','이예건');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('2');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('2');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>217</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2022-10-05</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('3');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이지원</span>
+															
+															<span>
+													
+														
+														
+														상병 3호봉
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 50사단-대구 </span>
+															
+															
+															
+																<span>입영 47주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">대구 북구</span>
+												<span class="temp">5.7℃</span>
+												<span class="humid">56%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+														<a href="javascript:fn_cafeMainLink2('20220280600','6629');" class="btn-line-w">카페바로가기</a>
+													
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('2050000','2021.04.06','20010814','이지원');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('3');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('3');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>237</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2022-10-25</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('4');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>김민수</span>
+															
+															<span>
+													
+														
+														
+														상병 3호봉
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 44주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+														<a href="javascript:fn_cafeMainLink2('20020191700','6698');" class="btn-line-w">카페바로가기</a>
+													
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2021.04.26','20010405','김민수');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('4');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('4');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>273</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2022-11-30</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('5');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+													
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>김기현</span>
+															
+															<span>상병</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>병사 </span>
+															
+															
+																<span>소속부대 육군훈련소 </span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+											
+												<!-- 병사/부사관/장교/군무원 -->
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('5');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>322</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-01-18</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('6');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+													
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>김태수</span>
+															
+															<span>일병</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>병사 </span>
+															
+															
+																<span>소속부대 21사단 </span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">강원 양구군 남면</span>
+												<span class="temp">-3.9℃</span>
+												<span class="humid">87%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+											
+												<!-- 병사/부사관/장교/군무원 -->
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('6');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">수료일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>6</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-07-24</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('7');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>김명훈</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 31사단-광주 </span>
+															
+															
+																<span>현역 / 상근 22-2기(1. 25. 입영) </span>
+															
+															
+																<span>입영 5주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">광주 북구</span>
+												<span class="temp">2.5℃</span>
+												<span class="humid">74%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+														<a href="javascript:fn_cafeMainLink2('20220280100','12117');" class="btn-line-w">카페바로가기</a>
+													
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('2031000','2022.01.25','20011020','김명훈');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('7');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('7');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('8');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상택</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+														<a href="javascript:fn_cafeMainLink2('20020191700','14030');" class="btn-line-w">카페바로가기</a>
+													
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2022.02.14','20011126','이상택');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('8');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('8');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('9');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상택</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr"></span>
+												<span class="temp">℃</span>
+												<span class="humid">%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date"> </span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('9','이상택','2022.02.14','08IyuIy6/tXS/vveGiNc+Q==','','','0000010001','0000420006');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('','2022.02.14','08IyuIy6/tXS/vveGiNc+Q==','이상택');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('9');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('9');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('10');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상태</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr"></span>
+												<span class="temp">℃</span>
+												<span class="humid">%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date"> </span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('10','이상태','2022.02.14','08IyuIy6/tXS/vveGiNc+Q==','','','0000010001','0000420006');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('','2022.02.14','08IyuIy6/tXS/vveGiNc+Q==','이상태');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('10');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('10');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>528</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-12</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('11');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상택</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('11','이상택','2022.02.13','20011126','0000140001','20020191700','0000010001','0000420007');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2022.02.13','20011126','이상택');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('11');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('11');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('12');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상택</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr"></span>
+												<span class="temp">℃</span>
+												<span class="humid">%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date"> </span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('12','이상택','2022.02.14','20011126','','undefined','0000010001','0000420007');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('','2022.02.14','20011126','이상택');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('12');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('12');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('13');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상가</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('13','이상가','2022.02.14','20011126','0000140001','20020191700','0000010001','0000420007');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2022.02.14','20011126','이상가');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('13');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('13');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('14');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상나</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('14','이상나','2022.02.14','20011126','0000140001','20020191700','0000010001','0000420007');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2022.02.14','20011126','이상나');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('14');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('14');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('15');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상다</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('15','이상다','2022.02.14','20011126','0000140001','20020191700','0000010001','0000420007');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2022.02.14','20011126','이상다');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('15');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('15');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('16');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상라</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('16','이상라','2022.02.14','20011126','0000140001','20020191700','0000010001','0000420007');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2022.02.14','20011126','이상라');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('16');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('16');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('17');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상마</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('17','이상마','2022.02.14','20011126','0000140001','20020191700','0000010001','0000420007');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2022.02.14','20011126','이상마');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('17');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('17');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						
+							
+							
+								<img src="/images/bg/bg_main_after01.jpg" alt="">
+							
+						
+						<!-- swiper-con -->
+						<div class="swiper-con">
+							<div class="swiper-con-wrap">
+								<!-- d-day-wrap -->
+								<div class="d-day-wrap">
+									<!--  전역이아닐경우 -->
+									<div class="tit_wrap">
+										
+											<p class="tit">전역일
+												<span class="count-wrap">
+										
+											<span>D</span>
+											<span>-</span>
+											<span>529</span>
+										
+										
+									</span>
+											</p>
+											<div class="d-day-date">2023-08-13</div>
+											
+										
+
+
+									</div>
+								</div>
+								<!-- //d-day-wrap -->
+								<!-- main-flex-wrapper -->
+								<div class="main-flex-wrapper">
+									<!-- main-profile-wrap -->
+									<div class="main-profile-wrap">
+										<div class="photo-wrap">
+											<a href="javascript:fn_missSoldierMainDetail('18');">
+												
+													
+													
+													
+														<img src="/images/content/img_profile.png" alt="">
+													
+												
+											</a>
+											<!-- 120 -->
+										</div>
+										<!-- profile-wrap -->
+										<div class="profile-wrap">
+											<div class="name-wrap">
+												
+													
+														<div class="name">
+															
+																<span>육군</span>
+															
+															
+																<span>이상바</span>
+															
+															<span>
+													
+														
+														
+														훈련병 
+													
+													</span>
+																
+																
+																
+														</div>
+														<div class="lavel">
+															
+																<span>입영부대 육군훈련소-논산 </span>
+															
+															
+															
+																<span>입영 2주차</span>
+															
+														</div>
+														<div class="nick-txt"></div>
+													
+													
+													
+												
+											</div>
+											<!-- main-weather-info -->
+											<div class="main-weather-info">
+												<span class="addr">충남 논산시 연무읍</span>
+												<span class="temp">-1.7℃</span>
+												<span class="humid">95%</span>
+													
+													
+											</div>
+											<div class="main-weather-info-sub">
+												<span class="date">2022-03-02 00:00</span>
+												<span class="src">제공:기상청</span>
+											</div>
+											<!-- //main-weather-info -->
+										</div>
+									</div>
+									<!-- //main-profile-wrap -->
+
+									<!-- btn-main-center -->
+									<div class="btn-main-center quad">
+										
+											
+												<!-- 예비군인/훈련병인경우 -->
+												<!-- 신교대에서 연명부 등록안하는 경우 버튼3개 고정 -->
+												
+													
+													
+														<a href="javascript:fn_cafeCreateCheck('18','이상바','2022.02.14','20011126','0000140001','20020191700','0000010001','0000420007');" class="btn-line-w">카페확인</a>
+													
+												
+												<a href="javascript:fn_findArmyArrngmtResult('6142000','2022.02.14','20011126','이상바');" class="btn-line-w">육군정보 확인</a>
+												<a href="javascript:fn_missSoldierMainDetail('18');" class="btn-line-w">보고싶은군인 상세</a>
+											
+											
+										
+										<a href="javascript:fn_missSoldierUpdate('18');" class="btn-line-w">보고싶은군인정보 수정</a>
+									</div>
+									<!-- //btn-main-center -->
+								</div>
+								<!-- //main-flex-wrapper -->
+							</div>
+
+							<!-- main-weather-info -->
+
+
+
+
+
+
+
+                            <!-- //main-weather-info -->
+						</div>
+						<!-- //swiper-con -->
+					</div>
+					<!-- //swiper-slide -->
+					
+					
+					
+					
+					<!-- swiper-slide -->
+					<div class="swiper-slide">
+						<img src="/images/bg/bg_main_after02.jpg" alt="">					
+							<!-- visual-wrap-txt -->
+							<div class="visual-wrap-txt">
+								<div class="txt">지금 보고 싶은 군인을 등록하고 <br>소식을 나눠보세요!</div>
+								<!-- <div class="sub-txt">최대 5명까지 등록 할 수 있습니다.</div> -->
+							</div>
+							<!-- //visual-wrap-txt -->
+							<a href="javascript:fn_missSoldierSearch();" class="btn-main-add">	<img src="/images/btn/btn_main_add.png" alt="추가하기"></a>					
+					</div>
+					<!-- //swiper-slide -->
+					
+				</div>
+
+				<div class="benefit-pagination">
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-pagination"></div>
+					<div class="swiper-button-next"></div>
+				</div>
+
+			</div>
+			<!-- //swiper-container -->	
+
+			
+			
+			
+			<!-- 공지사항 -->
+			<div class="group main-block">
+				<div class="section-title bd_gradation">
+					<h2>공지사항</h2>
+					<a href="javascript:fn_noticeList();" class="btn-more">더보기</a>
+				</div>
+				<!-- table-area -->
+				<div class="tbl-list2">
+					<table>
+						<colgroup>
+							<col style="width:15%">
+							<col style="width:*">
+							<col style="width:15%">
+							<col style="width:15%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>분류</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>등록일</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							
+							<tr>
+								<td>더캠프공지</td>
+								<td class="project">
+									<a href="javascript:fn_noticeDetail('21324');">더캠프 약관 변경 사전 안내</a>
+								</td>
+								<td>더캠프</td>
+								<td>2021.10.22</td>
+							</tr>
+							
+						
+							
+							<tr>
+								<td>더캠프공지</td>
+								<td class="project">
+									<a href="javascript:fn_noticeDetail('21107');">더캠프 게시물 관리 규정 개정에 따른 사전 안내</a>
+								</td>
+								<td>더캠프</td>
+								<td>2021.09.23</td>
+							</tr>
+							
+						
+							
+							<tr>
+								<td>더캠프공지</td>
+								<td class="project">
+									<a href="javascript:fn_noticeDetail('20790');">더캠프 개인정보처리방침, 청소년보호정책 개정에 따른 사전 안내</a>
+								</td>
+								<td>더캠프</td>
+								<td>2021.08.17</td>
+							</tr>
+							
+						
+							
+							<tr>
+								<td>더캠프공지</td>
+								<td class="project">
+									<a href="javascript:fn_noticeDetail('18957');">더캠프 토크게시판 불펌방지 기능 업데이트 21.01.26</a>
+								</td>
+								<td>더캠프</td>
+								<td>2021.01.26</td>
+							</tr>
+							
+						
+							
+							<tr>
+								<td>더캠프공지</td>
+								<td class="project">
+									<a href="javascript:fn_noticeDetail('18439');">입영부대 변경에 따른 카페가입 방법 안내 (5사단→22사단) </a>
+								</td>
+								<td>더캠프</td>
+								<td>2020.12.11</td>
+							</tr>
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+						</tbody>
+					</table>
+				</div>
+				<!--// table-area -->
+			
+			</div>
+			<!-- //공지사항 -->
+			<!-- 혜택 -->
+			<!-- <div class="group main-block">
+				<h2>혜택</h2>
+				<ul class="benefit-ico-mu">
+				  	<li><a href="#none">쇼핑</a></li>
+				  	<li><a href="#none">캠프레터북</a></li>
+				  	<li class="active"><a href="#none">맛집</a></li>
+				  	<li class="active"><a href="#none">통신</a></li>
+				  	<li><a href="#none">숙박/여행</a></li>
+				  	<li class="active"><a href="#none">자기개발</a></li>
+				  	<li><a href="#none">무료보험</a></li>
+				  	<li class="active"><a href="#none">기부하기</a></li>
+				</ul>
+			</div> -->
+			<!-- //혜택 -->
+			
+			<!-- 혜택 -->
+			<div class="group main-block">
+				<h2>혜택</h2>
+				<ul class="benefit-ico-mu">
+					<li class="active"><a href="/html/benefitzone/benefitzone_education.jsp" target="_blank" onclick="gtag('event', '자기계발 Click', {'event_category' : 'PC 혜택존 자기계발', 'event_label' : '자기계발'});">자기계발</a></li>
+					<li class="active"><a href="https://contents.thecamp.or.kr/static/worldvision_for/index02.html" target="_blank" onclick="gtag('event', '기부하기 Click', {'event_category' : 'PC 혜택존 기부하기', 'event_label' : '기부하기'});">기부하기</a></li>
+					<li class="active"><a href="javascript:openDiningcode();" onclick="gtag('event', '맛집 Click', {'event_category' : 'PC 혜택존 맛집', 'event_label' : '맛집'});">맛집</a></li>
+					<li class="active"><a href="/html/benefitzone/benefitzone_telecom.jsp" target="_blank" onclick="gtag('event', '통신 Click', {'event_category' : 'PC 혜택존 통신', 'event_label' : '자기계발'});">통신</a></li>
+				</ul>
+				
+			</div>
+			<!-- //혜택 -->
+
+			<!-- 진행중 이벤트 -->
+			<div class="group main-block">
+				<h2>진행중 이벤트</h2>
+				<ul class="event-list">
+					
+				</ul>
+			</div>
+			<!-- //진행중 이벤트 -->
+		</div>
+		<!--// contents -->
+	</form>
+	</div>
+	<!-- //container -->
+
+	<script src="/js/lib/swiper.min.js"></script>
+		<script>
+		    var swiper = new Swiper('.main-vs', {
+		    	slidesPerView: 'auto',
+		        centeredSlides: true,
+		        spaceBetween: 60,
+		        autoplay: {
+		            delay: 10000,
+		            disableOnInteraction: false,
+		          },
+		        loop: true,
+		        pagination: {
+		            el: '.swiper-pagination',
+		            clickable: true,
+		          },
+				navigation: {
+				    nextEl: '.swiper-button-next',
+				    prevEl: '.swiper-button-prev',
+				  },
+		    });
+		  </script>
+
+
+	<!-- footer -->
+	
+<script type="text/javascript">
+$(document).ready(function() {
+	fn_selectTermCdList();
+});
+
+function fn_selectTermCdList(){
+	var ajaxOption = {
+		url: "/term/selectTermCdListA.do",
+		callbackFn: function(res){
+			if(res.resultCd == "0000") {
+				$.each(res.listResult, function(){
+					var html = '<a href="/term/viewTermDetail.do?termCd='+this.termCd+"&termStartDate="+this.termStartDate+"&sortOrder="+this.sortOrder+'">'+this.termCdNm+'</a>';
+					$("#termCdList").append(html);
+				});
+			}
+		}
+	};
+	
+	commonUtil.fnAjaxCall(ajaxOption);
+}
+</script>
+<div class="footer">
+	<div class="footer-wrap">
+
+		<!-- 20200212 top 추가 -->
+		<div class="btn-top">
+			<a href="#"><span class="hide-txt">TOP</span></a>
+		</div>
+		<!-- //20200212 top 추가 -->
+
+		<div class="logo-area">
+			<img src="/images/content/logo_footer.png" alt="THE CAMP">
+		</div>
+
+		<!-- block-top -->
+		<div class="block-top">
+			<div id="termCdList" class="terms-area" style="float: left;">
+				
+			</div>
+			<div class="terms-area">
+				<a href="/main/company.do">회사소개/제휴문의</a>
+<!-- 				<a href="mailto:thecamp.helpdesk@gmail.com">제휴문의</a> -->
+			</div>
+		</div>
+		<!-- //block-top -->
+
+		<!-- block-bottom -->
+		<div class="block-bottom">
+			<div class="biz-area">
+				<span>㈜인에이블다온소프트</span>
+				<span>사업자번호 : 509-88-00859</span>
+				<span>대표자 : 장철민, 조성곤</span>
+			</div>
+			<div class="biz-area">
+				<span>서울시 용산구 이태원로 239, 5층(한남동)</span>
+			</div>
+			<div class="biz-area">
+				<span>고객센터 : 1661-9990</span>
+				<span>평일(월~금) 09:30~18:00(점심시간 : 13:00~14:00) </span>
+				<span>주말(토,일) / 공휴일 휴무</span>
+				<span>Fax (02) 6394-5200</span>
+			</div>
+			<div class="copyrights">© All Rights Reserved, Enable Daon Soft</div>
+		</div>
+		<!-- //block-bottom -->
+
+		<div class="familysite-area">
+			<a href="#none" class="site-tit">관련사이트</a>
+			<ul>
+				<li><a href="http://www.mnd.go.kr/mbshome/mbs/mnd/" target="_blank" title="국방부">국방부</a></li>
+				<li><a href="http://www.army.mil.kr/webapp/user/indexMain.do?siteId=army" target="_blank" title="대한민국육군">대한민국육군</a></li>
+				<li><a href="http://www.katc.mil.kr/katc/" target="_blank" title="육군훈련소">육군훈련소</a></li>
+				<li><a href="https://www.mma.go.kr/index.do" target="_blank" title="병무청">병무청</a></li>
+				<li><a href="https://www.welfare.mil.kr/index.jsp" target="_blank" title="국군복지포털">국군복지포털</a></li>
+			</ul>
+			<a href="#" class="btn-go">바로가기</a>
+		</div>
+		
+	</div>
+</div>
+	<!--// footer -->
+</body>
+</html>
+

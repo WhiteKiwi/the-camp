@@ -1,0 +1,1153 @@
+
+<!DOCTYPE html>
+<html lang="ko" >
+<head>
+
+<title>위문편지</title>
+
+
+
+
+
+
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width">
+<meta name="apple-mobile-web-app-title" content="THECAMP"/>
+<meta name="robots" content="index,nofollow"/>
+<meta name="description" content="대국민 국군 소통 서비스"/>
+<meta property="og:title" content="더캠프">
+<meta property="og:url" content="https://www.thecamp.or.kr/">
+<meta property="og:image" content="https://www.thecamp.or.kr/images/thecamp.png">
+<meta property="og:description" content="대국민 국군 소통 서비스"/>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="THECAMP">
+<meta name="twitter:url" content="https://www.thecamp.or.kr/">
+<meta name="twitter:image" content="https://www.thecamp.or.kr/images/thecamp.png">
+<meta name="twitter:description" content="대국민 국군 소통 서비스"/>
+
+<link rel="icon" type="image/x-ico"  href="/images/favicon.ico"/>
+<link rel="shortcut icon" type="image/x-ico"  href="/images/favicon.ico"/>
+<!-- CSS Library -->
+<link href="/css/jquery-ui.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/ax5grid.css"/>
+<link rel="stylesheet" type="text/css" href="/css/import.css">
+<link rel="stylesheet" href="/css/swiper.min.css">
+<!-- CSS Custom -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K8M7CTD');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115500731-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-115500731-5');
+</script>
+
+<script data-ad-client="ca-pub-6575005971712756" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script type="text/javascript">
+	var PAGE_CONTEXT = "";
+	var sCdnFileSrcUrl = "https://contents.thecamp.or.kr";
+	var serverMode = "real";
+	
+	var sVideoCommCd = "0000210001";
+	var sImageCommCd = "0000210002";
+	var sFileCommCd = "0000210003";
+</script>
+
+<!-- Javascript Library -->
+<script src="/js/lib/jquery-1.8.2.min.js" ></script>
+<script src="/js/lib/jquery-ui.min.js" ></script>
+<script src="/js/lib/ax5core.min.js" ></script>
+<script src="/js/lib/ax5grid.min.js" ></script>
+<script src="/js/lib/moment.min.js" ></script>
+<script src="/js/lib/handlebars.min.js" ></script>
+
+<!-- Javascript Custom -->
+<script src="/js/CommonUtil.js" ></script>
+<script src="/js/CommonError.js" ></script>
+<script src="/js/comUi.js"></script>
+<script src="/js/CodeMgr.js"></script>
+<script src="/js/ThumbSizeMgr.js"></script>
+<script src="/js/handlebarsHelpers.js"></script>
+<script src="/js/MobilePagingUtil.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	});
+
+	//CDN 업로드 파일 full url 세팅
+	function fn_getFileSrcUrl(obj) {
+		
+		var cdnServerMode = "d";
+		
+		if(serverMode == "real") {
+			cdnServerMode = "p";
+		}
+		else if(serverMode == "stg") {
+			cdnServerMode = "s";
+		}
+		
+		var sFileType = obj.fileTypeCd;
+		var sImageThumbnailSize = '';
+		
+		if(obj.filePath == '') {
+			return "";
+		}
+		
+		var sFilePath = sCdnFileSrcUrl + obj.filePath + obj.savedFileNm;
+		
+		if(obj.extNm != null && obj.extNm != '' && typeof obj.extNm != 'undefined') {
+			sFilePath += '.' + obj.extNm;
+		}
+			
+		if(sFileType == sImageCommCd) {
+			
+			if(obj.thumb == null || obj.thumb == '' || typeof obj.thumb == 'undefined') {
+				sImageThumbnailSize = thumbSizeMgr.defaultOriginSize;
+			}
+			else {
+				sImageThumbnailSize = obj.thumb;
+			}
+			
+			sFilePath += "?d=" + sImageThumbnailSize + "&s=" + cdnServerMode;
+		}
+		else {
+			sFilePath += "?s=" + cdnServerMode;
+		}
+		
+		return sFilePath;
+	}
+		
+</script>
+<script type="text/javascript">
+var traineeMgrSeq = "";
+
+$(document).ready(function() {
+	$("#tempSaveYn").val("N");
+
+	if('1' > 0) {
+		traineeMgrSeq = '1561180';
+	}
+
+	fn_selectList(traineeMgrSeq);
+});
+
+// 위문편지 쓰기 페이지로 이동
+function fn_moveInsert() {
+// 	var traineeMgrSeq = 0;
+	$("#traineeMgrSeq").val(traineeMgrSeq);
+	var url = PAGE_CONTEXT+"/consolLetter/viewConsolLetterInsert.do";
+	$("#frmMove").attr("action", url);
+	$("#frmMove").submit();
+/*
+	$(".swiper-slide").each(function(idx,obj){
+		if($(obj).children("a").hasClass("on")) {
+			console.log($(this).attr("traineeMgrSeq"));
+			traineeMgrSeq = $(this).attr("traineeMgrSeq");
+		}
+	});
+
+	var param = [
+		{name: "traineeMgrSeq", value: traineeMgrSeq}
+	];
+
+	mobileUi.openDialog(
+		url,
+		"consolLetterInsert",
+		param,
+		function(res){
+			console.log(res);
+		}
+	);
+ */
+}
+
+// 보낸편지, 임시저장 탭 클릭
+function fn_clickTab(type) {
+
+// 	 $("#divTab").children().removeClass("active");
+	 $("#statusCd").val("");
+
+	$("#tab0").removeClass("active");
+	$("#tab1").removeClass("active");
+	$("#curPage").val(1);
+
+	if(type == 1) {
+		// 보낸편지함
+		$("#statusCd").css("display", "block");
+		$("#tab1").addClass("active");
+		$("#tempSaveYn").val("N");
+		$("#sendList").css("display","block");
+		$("#tmpSaveList").css("display","none");
+// 		$("#divSendConsolLetter").css("display","block");
+// 		$("#divSaveConsolLetter").css("display","none");
+	}
+	else {
+		// 임시저장
+		$("#statusCd").css("display", "none");
+		$("#tab0").addClass("active");
+		$("#tempSaveYn").val("Y");
+		$("#sendList").css("display","none");
+		$("#tmpSaveList").css("display","block");
+// 		$("#divSendConsolLetter").css("display","none");
+// 		$("#divSaveConsolLetter").css("display","block");
+	}
+
+	fn_selectList();
+}
+
+// 위문편지 (보낸펀지,임시저장) 목록 조회
+function fn_selectList(paramTraineeMgrSeq) {
+
+	if(paramTraineeMgrSeq != null && paramTraineeMgrSeq != '' && typeof paramTraineeMgrSeq != 'undefined') {
+		traineeMgrSeq = paramTraineeMgrSeq;
+	}
+
+// 	console.log(traineeMgrSeq);
+// 	var traineeMgrSeq = 0;
+// 	$(".swiper-slide").each(function(idx,obj){
+// 		console.log("idx : " + idx);
+// 		console.log("obj");
+// 		console.log(obj);
+
+// 		if($(obj).children("a").hasClass("on")) {
+// 			console.log($(obj).children("a"));
+// 			traineeMgrSeq = $(this).attr("traineeMgrSeq");
+// 		}
+// 	});
+
+	var tempSaveYn = $("#tempSaveYn").val();
+	var trainUnitCd = 20020191700;
+
+	var listCnt = 0;
+	var ajaxOption = {
+		url: PAGE_CONTEXT+"/consolLetter/selectConsolLetterA.do",
+		data: {
+			traineeMgrSeq: traineeMgrSeq,
+			statusCd: $("#statusCd").val(),
+			tempSaveYn: tempSaveYn,
+			trainUnitCd: trainUnitCd,
+			cafeLetterYn: "Y",
+			curPage : $("#curPage").val()
+		},
+		scrollElementId : "divConsolLetter",/*필수*/
+		callbackFn: function(res){
+// 			console.log(res);
+
+			listCnt = listCnt + res.listResult.length;
+			/*최초 조회 여부 플래그*/
+			if(!res.isAppend){
+				$("#divSendConsolLetter").empty();
+				$("#divSaveConsolLetter").empty();
+				if(listCnt < 1) {
+				 	// 데이터가 없습니다 넣으면 됨.
+				}
+			}
+
+// 			<tr>
+// 			<td class="project">
+// 				<a href="#">
+// 					자랑스러운 아들에게 아빠가 쓰는 편지
+// 				</a>
+// 			</td>
+// 			<td>
+// 				2019.06.05
+// 			</td>
+// 			<td>
+// 				<span class="answer-state ty05">접수완료</span>
+// 			</td>
+// 		</tr>
+
+			var strHtml = "";
+// 			strHtml += '<ul class="notice-list">';
+			$.each(res.listResult, function(){
+				var targetResult = this;
+
+				console.log(JSON.stringify(targetResult).replace(/\"/g, '\''));
+
+				strHtml += '<tr>';
+				strHtml += '<td class="project">';
+				if(tempSaveYn == "N") {
+					strHtml += '<a href="javascript:fn_detail(' + targetResult.sympathyLetterMgrSeq + ')">';
+				}
+				else {
+					strHtml += '<a href="javascript:fn_detail(' + targetResult.sympathyLetterMgrSeq + ')">';
+				}
+				/*
+// 				strHtml += '<a href=\'javascript:fn_detail(\'' + JSON.stringify(targetResult) + '\');\'>';
+				if(tempSaveYn == "N") {
+					strHtml += '<a href="javascript:fn_detail(' + JSON.stringify(targetResult).replace(/\"/g, '\'') + ');">';
+				}
+				else {
+					strHtml += '<a href="javascript:fn_detail(' + JSON.stringify(targetResult).replace(/\"/g, '\'') + ');">';
+// 					strHtml += '<a href="#">';
+				}
+				 */
+				strHtml += targetResult.sympathyLetterSubject;
+				strHtml += '</a>';
+				strHtml += '</td>';
+				strHtml += '<td>';
+				strHtml += commonUtil.fnDateFormat({date:targetResult.regDate});
+				strHtml += '</td>';
+				strHtml += '<td>';
+				if(targetResult.statusCd != "1") {
+					strHtml += '<span class="answer-state ty05">';
+				}
+				else{
+					strHtml += '<span class="answer-state ty04">';
+				}
+				strHtml += targetResult.statusNm;
+				strHtml += '</span>';
+				strHtml += '</td>';
+				strHtml += '</tr>';
+// 				var targetResult = this;
+// 				console.log(targetResult);
+
+// 				strHtml += '<li id="'+targetResult.sympathyLetterMgrSeq+'">';
+// 				strHtml += "	<a href='javascript:fn_detail("+JSON.stringify(targetResult)+");'>";
+// 				strHtml += '		<div class="notice-tit">';
+// 				if(targetResult.statusCd == "0") {
+// 					strHtml += '			<span class="badge-item badge-color-line-green">'+targetResult.statusNm+'</span>';
+// 				}
+// 				else {
+// 					strHtml += '			<span class="badge-item badge-color-green">'+targetResult.statusNm+'</span>';
+// 				}
+// 				strHtml += '			<span class="notice-txt">'+targetResult.sympathyLetterSubject+'</span>';
+// 				strHtml += '		</div>';
+// 				strHtml += '		<div class="notice-detail">';
+// 				strHtml += '			<span>'+commonUtil.fnDateFormat({date:targetResult.regDate})+'</span>';
+// 				strHtml += '		</div>';
+// 				strHtml += '	</a>';
+// 				strHtml += '</li>';
+
+			});
+// 			strHtml += '</tr>';
+// 			console.log(strHtml);
+			if(tempSaveYn == "N") {
+				$("#divSendConsolLetter").append(strHtml);
+			}
+			else {
+				$("#divSaveConsolLetter").append(strHtml);
+			}
+
+		}
+	}
+
+	commonUtil.makeGrid(ajaxOption);
+// 	mobilePaging.makeList(ajaxOption);
+}
+
+// 위문편지 상세 페이지 이동
+function fn_detail(sympathyLetterMgrSeq) {
+// 	console.log(typeof param);
+// 	param = param.replace(/\'/g, '\"');
+// 	console.log(param);
+// 	var targetResult = JSON.parse(param);
+
+// 	$("#sympathyLetterMgrSeq").val(targetResult.sympathyLetterMgrSeq);
+	$("#sympathyLetterMgrSeq").val(sympathyLetterMgrSeq);
+
+	var url = PAGE_CONTEXT+"/consolLetter/viewConsolLetterDetail.do";
+
+	$("#frmMove").attr("action", url);
+	$("#frmMove").submit();
+// 	var param = [
+// 		{name: "sympathyLetterMgrSeq", value: targetResult.sympathyLetterMgrSeq}
+// 	];
+
+// 	mobileUi.openDialog(
+// 		url,
+// 		"consolLetterDetail",
+// 		param,
+// 		function(res){
+// 			console.log(res);
+// 		}
+// 	);
+}
+
+// 위문편지 삭제 후 삭제된 위문편지 영역 제거 호출 함수
+function fn_deleteConsolLetterDiv(sympathyLetterMgrSeq) {
+	$("#"+sympathyLetterMgrSeq).remove();
+}
+
+// 위문편지 수정 후 수정된 위문편지 영역 내용 변경 함수
+function fn_updateConsolLetterDiv(res) {
+	console.log(res);
+
+	var strHtml = "";
+	var targetResult = res.targetResult;
+// 	console.log(targetResult);
+
+// 	strHtml += '<li id="'+targetResult.sympathyLetterMgrSeq+'">';
+// 	strHtml += "	<a href='javascript:fn_detail("+JSON.stringify(targetResult)+");'";
+// 	strHtml += '		<div class="notice-tit">';
+// 	if(targetResult.statusCd == "0") {
+// 		strHtml += '			<span class="badge-item badge-color-line-green">'+targetResult.statusNm+'</span>';
+// 	}
+// 	else {
+// 		strHtml += '			<span class="badge-item badge-color-green">'+targetResult.statusNm+'</span>';
+// 	}
+// 	strHtml += '			<span class="notice-txt">'+targetResult.sympathyLetterSubject+'</span>';
+// 	strHtml += '		</div>';
+// 	strHtml += '		<div class="notice-detail">';
+// 	strHtml += '			<span>'+commonUtil.fnDateFormat({date:targetResult.regDate})+'</span>';
+// 	strHtml += '		</div>';
+// 	strHtml += '	</a>';
+// 	strHtml += '</li>';
+
+	if(targetResult.tempSaveYn == "N") {
+		fn_clickTab(1);
+	}
+	else {
+		fn_clickTab(2);
+	}
+}
+
+// 훈련병 추가하기 검색 팝업 오픈
+function fn_openTraineeAddSearch() {
+
+//	var url = PAGE_CONTEXT+"/consolLetter/viewTraineeAddSearch.do";
+	var url = PAGE_CONTEXT+"/missSoldier/viewMissSoldierDirectInsert.do";
+// 	var param = [
+// 		{name: "grpCd", value: ''},
+// 		{name: "grpNm", value: ''},
+// 		{name: "enterDate", value: ''},
+// 		{name: "trainUnitCd", value: '20020191700'},
+// 		{name: "trainUnitNm", value: ''}
+// 	];
+
+	$("#frmMove").attr("action",url);
+	$("#frmMove").submit();
+}
+
+function fn_getImgUrl(obj) {
+// 	console.log(JSON.stringify(obj));
+// 	console.log(111);
+// 	console.log(obj.missSoldierImgYn);
+}
+
+function fn_guidePop(){
+	var title = "위문편지함 이용안내";
+	var subMsg = "위문편지 작성 전 카페 공지사항을 꼭 확인하세요 <br><br>위문편지 수정은 임시저장 및 접수완료 상태에서만 가능합니다<br><br>출력완료 된 위문편지는 다음날 훈련병에게 전달되며 부대에 따라 전달 시기가 다를 수 있습니다";
+	commonGuidePopup.alert(title,subMsg);
+}
+</script>
+
+</head>
+
+<body class="wrap">
+<input type="hidden" id="tempSaveYn" />
+<input type="hidden" id="curPage" name="curPage"/>
+<!-- <form id="frm" method="post" action=""> -->
+<!-- 	<input type="hidden" name="sympathyLetterMgrSeq" id="sympathyLetterMgrSeq" value="" /> -->
+<!-- </form> -->
+	<!-- header -->
+	
+	<script type="text/javascript">
+		var sIuid = "5302760";
+
+		$(document).ready(function() {
+			
+			if(sIuid != "") {
+				fn_selectMemberType();
+			}
+			
+			$("a.hom").attr("href", "/main/viewWebMain.do");
+
+		});
+		
+		function fn_selectMemberType() {
+			
+			var ajaxOption = {
+				url: "/member/selectMemberTypeA.do",
+				data: "",
+				callbackFn: fn_selectMemberType_callback
+			}
+			
+			commonUtil.fnAjaxCall(ajaxOption);
+		}
+		
+		function fn_selectMemberType_callback(res) {
+			
+			if(res != null) {
+				var strMemberInfo = res.nickname + "(" + res.memberTypeCdNm + ")";
+				$("#memberInfo").text(strMemberInfo);
+				
+				$(".user").attr("href","/member/viewMemberMgr.do");
+			}
+		}
+				
+        function fn_notePop(){
+            window.open('/note/viewList.do','쪽지함','width=700,height=740,status=no,toolbar=no,resizable=no,scrollbars=no')
+        }
+        function fn_lGuidePop(){
+			window.open('/consolLetter/consolLetterGuide.do','보고 싶은 군인 등록 방법 안내','width=780,height=740,status=no,toolbar=no,resizable=no,scrollbars=yes')
+		}
+
+	</script>
+	
+	<!-- header -->
+	<header class="header">
+		<div class="header-wrap">
+			
+				
+				
+					<h1><a href="/main/viewWebMain.do"><img src="/images/content/h1_logo.png" alt="THE CAMP"></a></h1>
+				
+			
+			<div class="function-menu">
+				<div class="user_info">
+					<a href="javascript:fn_lGuidePop()">
+						<span>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29px" height="28px">
+								<image x="0px" y="0px" width="29px" height="28px" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAcCAMAAACqEUSYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACK1BMVEX///8Arq8ESUoBkJEBnp8BoaEApaYApaYBoaIBnp8Bk5QEWFgCg4QAqqsAp6gAqqsAp6gBjIwBjIwAp6gAq6wBkZIBkpMArK0BlpcHAgICh4gBkJACiIgArK0BkJAEWFgApaYAqaoDbG0Bl5gBnJ0FLS0ApaYAqKkDYmICiYoBlJUBnJ0BoKEAoqMApKUAo6P///8BpaYAoqMApaYBoaEAp6gBnZ4BoaIChoYBlZYHAgIApKUAqKkEWFgBlJUBm5wETEw5uboAp6gDZGUzn5/h9fUAra4BmpvL5uYBoKH///8Bk5T///8Ap6gCh4j///////8BmZoDa2z////////////////7/f34/Pz2/Pz0+/v3/Pzh9PSF0dEBkpMDYmL///////////////8Ao6MArq9Lxsc7wcIbt7ez5+ep5OQNsrMUtLXS8fH+//8euLgAra5+1tf////G7e226OjQ8PABrq+k4uL3/Pwou7w4wMFXysqA19chuLnp+PgnursHsLHE7Ozl9/dExMT1/PxfzM03v8D2/PxezMym4+PU8fICr7DL7u9dzMx41NXg9fUEr7AStLXW8vIsvL1TyMkrvLxpz9AFsLEJsbIxvr5oz9Bjzc5by8xkzs5izc5nz88ApKV91tZ209QPs7TD7Oxz09Oh4eKl4uNq0ND8/v4iubrn9/dWycrw+voVtbb9/v7I7u5v0dLO7/AtvL3q+PiQ3NwJr7Bay8uG2dnrw8D9AAAAZHRSTlMAAAxcotXv8tqpZxIMe/L4jRRL5u9gc/6SAXaUQ/xgCuHxGniYBOX5EkVliKm11tIB3tHxtNOEpUBhAuH2DnGQB+HtFUT+/U7FeD2BnetUD8CLEg2S6vX3+vz+/vfCVgkdKigSenUw2gAAAAFiS0dEAIgFHUgAAAAHdElNRQfkCQkRDgZbHZ8zAAABkklEQVQoz2NggABGRkYmZhZWthR2Dk4ubkZGBlTAw8uXmpaeCgb8AoKokkLCqRmZWdmpUCAiiiwpJp6ak5uXnwoHBRKScEmpgtTUwqLiVGQgDZOUkQXySopKy5BlC+QgkvIKIF55UUVlalUlQlpRCSyrDOZUFxXV1NbVI+lWAUmqqoHZDY1FTc0trUiy6hpAWU0op629qKOzqxtJWgsoqw3j9BT19vVPQJLVAcrqQtkT6yZNLp+C7Gw9oKw+lD112vQZOSheZmcwMDBMnTltFhDMnjN37rz5s8CgPhXk9wVAvUapC4vQQTVYrzFQ1iR1EYZsee9ioKwpUNYMi2xR0RKgrDlQ1iJ1KYbcsuVFQFlLoKyV9Qp0yZWrUlenptrYgoLSbg267Np1qXWpqfbgWHBwXI8muyF1Y1GqkzMkCl1c0WQ3ZRVNcnOHRb8HhrM2bfaEpxwvVKktW6u3eSOlOh8U2e2pvn7IadI/AElyB19gEGp6Dg4JDQuPiIyKio6JjYtHywkGDAwJiUkgkJgM5kEAAD03/3YyNzKAAAAAAElFTkSuQmCC"></image>
+							</svg>
+						</span>
+						<span>카페 가입 방법</span>
+					</a>
+					<a href='#' class='user'><span class='mask'><img src='/images/icon/ico_man.png' alt='회원'></span><span id='memberInfo'></span></a>
+					<a href="/missSoldier/viewMissSoldierRegList.do">보고싶은 군인</a>
+					<a href='/consolLetter/viewAppMenuConsolLetterMain.do'>위문편지함</a>
+					<a href='javascript:fn_notePop();'>쪽지함</a>
+					<a href='/logout.do' class='logout'>로그아웃</a>
+					
+					
+				</div>
+				<ul class="gnb_menu clear">
+					<li class="g1">
+						<a href="/eduUnitCafe/viewEduUnitCafeMain.do">카페</a>
+						<ul class="depth2">
+
+							<li><a href="/eduUnitCafe/viewEduUnitCafeMain.do">카페(위문편지)</a></li>
+							<li><a href="/faqMgr/faqMgrList.do">예비군인을 위한 질문과답변</a></li>
+							<li><a href="/eduUnitCafe/consolationLetter.do">위문편지(안내)</a></li>
+							<li><a href="/location/locationInfoPage.do">신병교육대 위치안내</a></li>
+							<li><a href="/eduUnitCafe/myUnitSearch.do">자대배치조회</a></li>
+							<li><a href="/eduUnitCafe/viewAfterEduUnitCafeMain.do">후반기카페</a></li>
+						</ul>
+					</li>
+					<li class="g2">
+						<a href="/camp/main/main.do">캠프</a>
+						<ul class="depth2">
+							<li><a href="/camp/main/main.do">내 캠프</a></li>
+							<li><a href="/camp/main/viewSearchCamp.do">캠프 검색</a></li>
+							<li><a href="/camp/main/viewCreateCamp.do">캠프 만들기</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/talk/content/viewTalkContentList.do">토크</a>
+					</li>
+					<li><a href="/benefitZone/benefitZoneMain.do">혜택존</a></li>
+					<li>
+						<a href="/notice/viewNoticeList.do">고객센터</a>
+						<ul class="depth2">
+							
+							<li><a href="/notice/viewNoticeList.do">공지사항</a></li>
+							<li><a href="/faq/viewList.do">자주하는 질문</a></li>
+							<li><a href="/inquire/viewInquireList.do">1:1문의</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- //header -->
+	
+	
+
+	<!-- //header -->
+
+	<!-- container -->
+	<div class="container">
+
+		<!-- 개별카페 GNB -->
+		
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	if("14030" == "" || "14030" == null || "{trainUnitEduSeq=14030, trainUnitCd=20020192100, trainUnitEduNm=2교육대 6중대, squardronNum=6, enterDate=20220214, enterWeek=3, trainEduStartDay=20220214, trainEduEndDay=20220321, trainUnitTypeCd=0000140001, trainUnitTypeNm=육군훈련소, trainUnitEduFileGroupSeq=35801, trainUnitEduJoinCnt=1326, useYn=Y, trainUnitEduStatusCd=0000530001, trainUnitEduStatusNm=오픈, useYnCd=Y, useYnNm=오픈, regUser=5936708, regDate=20220221, regTime=090321, uptUser=5936708, uptDate=20220228, uptTime=155828, traineeCnt=151, fileSourceCd=0000200005, commonFileMgrSeq=143217, boardNms=자유게시판, boardSeqs=19054, boardOrders=1, boardBasics=19054, sketchNms=훈련병스케치, sketchSeqs=12031, sketchOrders=1, sketchBasics=12031, trainUnitNm=육군훈련소(27연대), grpCd=0000010001, grpNm=육군, commonFileGroupMgrSeq=35801, imgFileCnt=1, fileTypeCd=0000210002, filePath=/images/upload/20220221//, savedFileNm=20220221090241078_ge1, extNm=jpg, oriFileNm=27R, fileSrcUrl=null, trainCafeMemberSeq=8145491}" == "" || "{trainUnitEduSeq=14030, trainUnitCd=20020192100, trainUnitEduNm=2교육대 6중대, squardronNum=6, enterDate=20220214, enterWeek=3, trainEduStartDay=20220214, trainEduEndDay=20220321, trainUnitTypeCd=0000140001, trainUnitTypeNm=육군훈련소, trainUnitEduFileGroupSeq=35801, trainUnitEduJoinCnt=1326, useYn=Y, trainUnitEduStatusCd=0000530001, trainUnitEduStatusNm=오픈, useYnCd=Y, useYnNm=오픈, regUser=5936708, regDate=20220221, regTime=090321, uptUser=5936708, uptDate=20220228, uptTime=155828, traineeCnt=151, fileSourceCd=0000200005, commonFileMgrSeq=143217, boardNms=자유게시판, boardSeqs=19054, boardOrders=1, boardBasics=19054, sketchNms=훈련병스케치, sketchSeqs=12031, sketchOrders=1, sketchBasics=12031, trainUnitNm=육군훈련소(27연대), grpCd=0000010001, grpNm=육군, commonFileGroupMgrSeq=35801, imgFileCnt=1, fileTypeCd=0000210002, filePath=/images/upload/20220221//, savedFileNm=20220221090241078_ge1, extNm=jpg, oriFileNm=27R, fileSrcUrl=null, trainCafeMemberSeq=8145491}" == null) {
+		alert("세션이 종료되어 카페 정보가 잘못되었습니다. 메인 페이지로 이동합니다.");
+		location.href = "/eduUnitCafe/viewEduUnitCafeMain.do";
+	}
+
+	if("/images/upload/20220221//" != null && "/images/upload/20220221//" != "") {
+		// 파일업로드 조회용 데이터 세팅
+		var data = {
+			 fileTypeCd : "0000210002"
+			,thumb : thumbSizeMgr.rep.indiMain
+			,filePath : "/images/upload/20220221//"
+			,savedFileNm : "20220221090241078_ge1"
+			,extNm : "jpg"
+		};
+		//$("#imgFileArea").attr("src",fn_getFileSrcUrl(data));
+		$("#imgFileArea").css("background","url("+fn_getFileSrcUrl(data)+") no-repeat center top");
+	}
+	
+});
+
+// 공지사항 목록 페이지 이동
+function fn_moveListNotice() {
+	$("#frmMove").attr("action",PAGE_CONTEXT+"/eduUnitCafe/notice/viewNoticeList.do");
+	$("#frmMove").submit();
+}
+
+// 공지사항 상세 페이지 이동
+function fn_moveDetailNotice(noticeMgrSeq) {
+	$("#frmMove #noticeMgrSeq").val(noticeMgrSeq);
+	$("#frmMove").attr("action",PAGE_CONTEXT+"/eduUnitCafe/notice/viewNoticeDetail.do");
+	$("#frmMove").submit();
+}
+
+// 훈련병스케치 메인 페이지 이동
+function fn_moveMainSketch() {
+	$("#frmMove").attr("action",PAGE_CONTEXT+"/eduUnitCafe/traineeSketch/viewTraineeSketchBoardList.do");
+	$("#frmMove").submit();
+}
+
+// 훈련병스케치 게시물 목록 페이지 이동
+function fn_moveListSketch(seq) {
+	$("#frmMove #traineeSketchBoardMgrSeq").val(seq);
+	$("#frmMove").attr("action",PAGE_CONTEXT+"/eduUnitCafe/traineeSketch/viewTraineeSketchContentList.do");
+	$("#frmMove").submit();
+}
+
+// 훈련병스케치 상세 페이지 이동
+function fn_moveDetailSketch(traineeSketchContentSeq) {
+	$("#frmMove #traineeSketchContentSeq").val(traineeSketchContentSeq);
+	$("#frmMove").attr("action",PAGE_CONTEXT+"/eduUnitCafe/traineeSketch/viewTraineeSketchContentDetail.do");
+	$("#frmMove").submit();
+}
+
+// 게시판 목록페이지로 이동
+function fn_moveListPost() {
+	$("#frmMove #useYn").val("Y");
+	$("#frmMove").attr("action",PAGE_CONTEXT+"/eduUnitCafe/postBoard/viewPostBoardList.do");
+	$("#frmMove").submit();
+}
+
+// 게시판 상세 페이지 이동
+function fn_moveDetailPost(seq) {
+	$("#frmMove #trainCafeContentSeq").val(seq);
+	$("#frmMove").attr("action",PAGE_CONTEXT+"/eduUnitCafe/postBoard/viewPostBoardDetail.do");
+	$("#frmMove").submit();
+}
+
+// 위문편지함 이동
+function fn_moveMainConsolLetter() {
+	$("#frmMove").attr("action",PAGE_CONTEXT+"/consolLetter/viewConsolLetterMain.do");
+	$("#frmMove").submit();
+}
+
+function fn_moveSetup() {
+	$("#frmMove").attr("action",PAGE_CONTEXT+"/eduUnitCafe/setup/viewSetupList.do");
+	$("#frmMove").submit();
+}
+
+// 서브 gnb 메뉴 클릭
+function fn_clickSubMenu(type,obj) {
+	$("#gnbSubMenu").children().find("a").removeClass("on");
+	$.each($("#gnbSubMenu").children().find("a"),function(idx) {
+		if((idx+1) == type) {
+			$(this).addClass("on");
+		}
+	});
+	
+	if(type == 1) {
+		// 공지사항
+		fn_moveListNotice();
+	}
+	else if(type == 2) {
+		// 훈련병스케치
+		fn_moveMainSketch();
+	} 
+	else if(type == 3) {
+		// 위문편지
+// 		alert("준비중입니다.");
+		fn_moveMainConsolLetter();
+	} 
+	else if(type == 4) {
+		// 게시판
+		fn_moveListPost();
+	}
+	else {
+		// 설정
+		fn_moveSetup();
+	}
+}
+
+</script>
+
+	<!-- visual img -->
+	<div class="sub-tit-visual mu02" id="imgFileArea">
+		<div class="tit-visual-wrap">
+			<div class="tit">2교육대 6중대</div>
+			<ul class="info-list">
+				<li>
+					
+					입영일
+					<span>2022.02.14</span>
+				</li>
+				<li>
+					
+					수료일
+					<span>2022.03.21</span>
+				</li>
+				<li>
+					멤버
+					<span>1,326</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- //visual img -->
+		
+	<!-- container-tab : 1022 추가 -->
+	<div class="container-tab">
+		<ul id="gnbSubMenu">
+			<li><a href="javascript:fn_clickSubMenu(1,this);" class="">공지사항</a></li>
+			<li><a href="javascript:fn_clickSubMenu(2,this);" class="">훈련병스케치</a></li>
+			<li><a href="javascript:fn_clickSubMenu(3,this);" class="on">위문편지</a></li>
+			<li><a href="javascript:fn_clickSubMenu(4,this);" class="">게시판</a></li>
+			<li><a href="javascript:fn_clickSubMenu(5,this);" class="">설정</a></li>
+		</ul>
+	</div>
+	<!-- //container-tab -->
+
+	<form id="frmMove" name="frmMove" method="post">
+		<input type="hidden" id="trainUnitTypeCd" name="trainUnitTypeCd" value="0000140001"/>
+		<input type="hidden" id="trainUnitCd" name="trainUnitCd" value="20020192100"/>
+		<input type="hidden" id="trainUnitEduSeq" name="trainUnitEduSeq" value="14030"/>
+		<input type="hidden" id="useYn" name="useYn"/>
+		<input type="hidden" id="noticeMgrSeq" name="noticeMgrSeq"/>
+		<input type="hidden" id="traineeSketchBoardMgrSeq" name="traineeSketchBoardMgrSeq"/>
+		<input type="hidden" id="traineeSketchContentSeq" name="traineeSketchContentSeq"/>
+		<input type="hidden" id="enterDate" name="enterDate" value="20220214"/>
+		<input type="hidden" id="trainUnitNm" name="trainUnitNm" value="육군훈련소(27연대)"/>
+		<input type="hidden" id="grpCd" name="grpCd" value="0000010001"/>
+		<input type="hidden" id="grpNm" name="grpNm" value="육군"/>
+		<input type="hidden" id="trainCafeContentSeq" name="trainCafeContentSeq" value=""/>
+		<input type="hidden" id="pageType" name="pageType" value="3"/>
+		<input type="hidden" name="sympathyLetterMgrSeq" id="sympathyLetterMgrSeq" value="" />
+		<input type="hidden" name="traineeMgrSeq" id="traineeMgrSeq" value="" />
+		<input type="hidden" name="trainUnitEduNm" id="trainUnitEduNm" value="2교육대 6중대" />
+	</form>
+
+
+		<!-- container-wrap -->
+		<div class="container-wrap">
+			<!-- location -->
+			<div class="location-area">
+				<a href="#none" class="hom"></a>
+				<a href="#none">내카페</a>
+				<a href="#none">2교육대 6중대</a>
+				<a href="#none">위문편지</a>
+				<a href="#none">위문편지함</a>
+			</div>
+			<!--// location -->
+
+			<!-- group -->
+			<div class="group">
+				<div class="section-title bd_gradation">
+					<strong class="title">위문편지함</strong>
+					<a href="javascript:fn_guidePop()" class="desc-text2"></a>
+				</div>
+
+				<div class="swiper-container letter-slide-wrap">
+					<div class="swiper-wrapper">
+						
+							
+								
+
+
+		 							
+										
+											<div class="swiper-slide">
+										
+										
+									
+
+									
+										
+											<a href="javascript:fn_selectList('1561180');" class="letter-card-box on" >
+										
+										
+									
+<!-- 											<a href="#" class="letter-card-box on"> -->
+										<div class="flex">
+											<div class="photo-wrap">
+														<img id="missSoldierProfile0"  src="">
+
+														<script type="text/javascript">
+															var missSoldierImgYn = 'N';
+															var profileFileMgrSeq = '';
+															var profileIdx = '0';
+
+															var imgData = {};
+															var imgUrl = "/images/content/img_profile_60.png";
+
+															if(missSoldierImgYn == "Y") {
+																imgData = {
+																	 fileTypeCd : ''
+																	,filePath : ''
+																	,savedFileNm : ''
+																	,extNm : ''
+																	,thumb : thumbSizeMgr.profile
+																};
+
+																imgUrl = fn_getFileSrcUrl(imgData);
+															}
+															else if(missSoldierImgYn == "N" && profileFileMgrSeq != null && profileFileMgrSeq != '' && typeof profileFileMgrSeq != 'undefined') {
+																imgData = {
+																		 fileTypeCd : ''
+																		,filePath : ''
+																		,savedFileNm : ''
+																		,extNm : ''
+																		,thumb : thumbSizeMgr.profile
+																};
+
+																imgUrl = fn_getFileSrcUrl(imgData);
+
+															}
+
+															$("#missSoldierProfile" + profileIdx).attr("src", imgUrl);
+														</script>
+											</div>
+											<div class="profile-wrap">
+												<div class="name">이상택</div>
+												<div class="day">
+													
+													2001-11-26
+												</div>
+											</div>
+										</div>
+									</a>
+
+
+<!-- 											</div> -->
+
+									
+										
+											
+												
+											
+										
+										
+
+											
+												
+												
+
+													
+														
+														
+															</div>
+														
+														
+													
+
+												
+											
+
+										
+									
+
+								
+							
+
+						
+					</div>
+
+					<!-- Add Pagination -->
+					
+						
+							<div class="cafe-slide-pagination">
+						
+						
+					
+						<div class="swiper-button-prev"></div>
+		    			<div class="swiper-pagination"></div>
+					    <div class="swiper-button-next"></div>
+				    </div>
+				</div>
+				<script src="/js/lib/swiper.min.js"></script>
+				<script>
+				    var swiper = new Swiper('.letter-slide-wrap', {
+				    	slidesPerView: 'auto',
+				    	loop: false,
+				    	pagination: {
+				            el: '.swiper-pagination',
+				            type: 'fraction',
+				          },
+				          navigation: {
+				            nextEl: '.swiper-button-next',
+				            prevEl: '.swiper-button-prev',
+				          },
+				    });
+				    $('.letter-card-box').each(function(){
+						$(this).on('click', function(e){
+							$(this).addClass('on').siblings().removeClass('on');
+						});
+					});
+				</script>
+
+				<div class="btn-a-wrap text-center mt50">
+					<button type="button" class="btn-gradation large-w200" onclick="javascript:fn_moveInsert();">편지쓰기</button>
+				</div>
+
+			</div>
+			<!-- //group -->
+
+			<!-- group -->
+			<div class="group">
+				<div class="tab mb30">
+					<ul class="tab-tit">
+						<li>
+							<a id="tab1" href="javascript:fn_clickTab(1);" class="active">보낸편지</a>
+						</li>
+						<li>
+							<a id="tab0" href="javascript:fn_clickTab(0);">임시저장</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="sorting-wrap">
+					<select class="select-ty01 w200" id="statusCd" onchange="javascript:fn_selectList();">
+						<option value="">전체</option>
+						<option value="0">접수완료</option>
+						<option value="1">출력완료</option>
+					</select>
+				</div>
+
+				<!-- table-area -->
+				<div class="tbl-list2">
+					<div id="sendList" style="display:block;">
+						<table>
+							<colgroup>
+								<col style="width:*">
+								<col style="width:12%">
+								<col style="width:15%">
+							</colgroup>
+							<tbody>
+								<thead>
+									<tr>
+										<th>제목</th>
+										<th>등록일</th>
+										<th>상태</th>
+									</tr>
+								</thead>
+								<tbody id="divSendConsolLetter">
+								</tbody>
+							</tbody>
+						</table>
+					</div>
+					<div id="tmpSaveList" style="display:none;">
+						<table>
+							<colgroup>
+								<col style="width:*">
+								<col style="width:12%">
+								<col style="width:15%">
+							</colgroup>
+							<tbody>
+								<thead>
+									<tr>
+										<th>제목</th>
+										<th>등록일</th>
+										<th>상태</th>
+									</tr>
+								</thead>
+								<tbody id="divSaveConsolLetter">
+								</tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--// table-area -->
+
+				<!-- paging -->
+				<div class="paging">
+				</div>
+				<!-- // paging -->
+			</div>
+			<!-- //group -->
+
+		<!--// container-wrap -->
+
+		</div>
+	<!-- //container -->
+	</div>
+	<!-- footer -->
+	
+<script type="text/javascript">
+$(document).ready(function() {
+	fn_selectTermCdList();
+});
+
+function fn_selectTermCdList(){
+	var ajaxOption = {
+		url: "/term/selectTermCdListA.do",
+		callbackFn: function(res){
+			if(res.resultCd == "0000") {
+				$.each(res.listResult, function(){
+					var html = '<a href="/term/viewTermDetail.do?termCd='+this.termCd+"&termStartDate="+this.termStartDate+"&sortOrder="+this.sortOrder+'">'+this.termCdNm+'</a>';
+					$("#termCdList").append(html);
+				});
+			}
+		}
+	};
+	
+	commonUtil.fnAjaxCall(ajaxOption);
+}
+</script>
+<div class="footer">
+	<div class="footer-wrap">
+
+		<!-- 20200212 top 추가 -->
+		<div class="btn-top">
+			<a href="#"><span class="hide-txt">TOP</span></a>
+		</div>
+		<!-- //20200212 top 추가 -->
+
+		<div class="logo-area">
+			<img src="/images/content/logo_footer.png" alt="THE CAMP">
+		</div>
+
+		<!-- block-top -->
+		<div class="block-top">
+			<div id="termCdList" class="terms-area" style="float: left;">
+				
+			</div>
+			<div class="terms-area">
+				<a href="/main/company.do">회사소개/제휴문의</a>
+<!-- 				<a href="mailto:thecamp.helpdesk@gmail.com">제휴문의</a> -->
+			</div>
+		</div>
+		<!-- //block-top -->
+
+		<!-- block-bottom -->
+		<div class="block-bottom">
+			<div class="biz-area">
+				<span>㈜인에이블다온소프트</span>
+				<span>사업자번호 : 509-88-00859</span>
+				<span>대표자 : 장철민, 조성곤</span>
+			</div>
+			<div class="biz-area">
+				<span>서울시 용산구 이태원로 239, 5층(한남동)</span>
+			</div>
+			<div class="biz-area">
+				<span>고객센터 : 1661-9990</span>
+				<span>평일(월~금) 09:30~18:00(점심시간 : 13:00~14:00) </span>
+				<span>주말(토,일) / 공휴일 휴무</span>
+				<span>Fax (02) 6394-5200</span>
+			</div>
+			<div class="copyrights">© All Rights Reserved, Enable Daon Soft</div>
+		</div>
+		<!-- //block-bottom -->
+
+		<div class="familysite-area">
+			<a href="#none" class="site-tit">관련사이트</a>
+			<ul>
+				<li><a href="http://www.mnd.go.kr/mbshome/mbs/mnd/" target="_blank" title="국방부">국방부</a></li>
+				<li><a href="http://www.army.mil.kr/webapp/user/indexMain.do?siteId=army" target="_blank" title="대한민국육군">대한민국육군</a></li>
+				<li><a href="http://www.katc.mil.kr/katc/" target="_blank" title="육군훈련소">육군훈련소</a></li>
+				<li><a href="https://www.mma.go.kr/index.do" target="_blank" title="병무청">병무청</a></li>
+				<li><a href="https://www.welfare.mil.kr/index.jsp" target="_blank" title="국군복지포털">국군복지포털</a></li>
+			</ul>
+			<a href="#" class="btn-go">바로가기</a>
+		</div>
+		
+	</div>
+</div>
+	<!--// footer -->
+	<!--// 공통 팝업 -->
+	
+
+
+<script type="text/javascript">
+    var commonGuidePopup = {
+
+        alert: function(mainMsg, subMsg, callback) {
+            var $popup = $('#common_popup_alert');
+            $popup.find('.mainMsg').html(mainMsg);
+
+            if (subMsg) {
+                $popup.find('.subMsg').html(subMsg);
+            }
+
+            $popup.find('.btn-ok').off().click(function() {
+                if (callback) {
+                    callback();
+                }
+                $popup.hide();
+            });
+
+            $popup.show();
+        },
+
+        confirm: function(mainMsg, subMsg, callback) {
+            var $popup = $('#common_popup_confirm');
+            $popup.find('.mainMsg').html(mainMsg);
+
+            if (subMsg) {
+                $popup.find('.subMsg').html(subMsg);
+            } else {
+                $popup.find('.subMsg').html('');
+            }
+
+            $popup.find('.btn-ok').off().click(function() {
+                if (callback) {
+                    callback();
+                }
+                $popup.hide();
+            });
+
+            $popup.find('.btn-cancel').off().click(function() {
+                $popup.hide();
+            });
+
+            $popup.show();
+        }
+    };
+</script>
+
+<div class="alertwrap" style="display:none" id="common_popup_alert">
+    <div class="alert-box2">
+        <div class="cont text-center">
+            <strong class="txt2 text-center mainMsg"></strong>
+            <span class="sub-txt2 subMsg text-left"></span>
+        </div>
+        <div class="button-btn">
+            <button type="button" class="btn-ok">확인</button>
+        </div>
+    </div>
+</div>
+
+<div class="alertwrap" style="display:none" id="common_popup_confirm">
+    <div class="alert-box">
+        <div class="cont text-center">
+            <strong class="txt2 text-center mainMsg"></strong>
+            <span class="sub-txt2 subMsg"></span>
+        </div>
+        <div class="button-btn">
+            <button type="button" class="btn-cancel">취소</button>
+            <button type="button" class="btn-ok">확인</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
