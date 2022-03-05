@@ -4,8 +4,8 @@ import { registerCafeRequester } from './register-cafe.requester';
 describe.skip('RegisterCafeRequester e2e', () => {
 	it('성공', async () => {
 		const session = await loginRequester.request({
-			id: '',
-			password: '',
+			id: process.env.ID!,
+			password: process.env.PASSWORD!,
 		});
 		await registerCafeRequester.request(
 			{

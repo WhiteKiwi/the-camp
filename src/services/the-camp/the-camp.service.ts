@@ -55,10 +55,9 @@ export class TheCampService {
 	async fetchUnitSoldiers(
 		dto: FetchSoldierDto,
 		session: TheCampSession,
-	): Promise<FetchUnitSoldierRawInfo> {
+	): Promise<FetchUnitSoldierRawInfo[]> {
 		// TODO: 한 부대에 여러 인편 케이스 찾아서 대응하기
-		const soldiers = await this.fetchSoldierRequester.request(dto, session);
-		return soldiers[0];
+		return await this.fetchSoldierRequester.request(dto, session);
 	}
 
 	async sendLetter(dto: SendLetterDto, session: TheCampSession): Promise<void> {

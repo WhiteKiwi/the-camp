@@ -8,7 +8,7 @@ export class FetchSoldiersRequester {
 
 	async request(session: TheCampSession): Promise<FetchSoldierRawInfo[]> {
 		const response = await axios.get(
-			'https://www.thecamp.or.kr/eduUnitCafe/viewEduUnitCafeMain.do',
+			'https://www.thecamp.or.kr/main/viewWebMain.do',
 			this.createOptions(session),
 		);
 
