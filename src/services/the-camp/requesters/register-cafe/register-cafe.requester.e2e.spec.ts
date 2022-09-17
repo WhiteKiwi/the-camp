@@ -9,6 +9,7 @@ describe.skip('RegisterCafeRequester e2e', () => {
 		});
 		await registerCafeRequester.request(
 			{
+                정렬번호: '1',
 				이름: '홍길동',
 				생년월일: '2001-01-01',
 				입영일: '2022-02-14',
