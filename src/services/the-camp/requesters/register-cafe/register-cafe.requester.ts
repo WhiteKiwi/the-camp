@@ -26,6 +26,7 @@ export class RegisterCafeRequester {
 	}
 
 	private createPayload({
+        정렬번호,
 		이름,
 		군종,
 		관계,
@@ -35,7 +36,7 @@ export class RegisterCafeRequester {
 		입영부대TypeCode,
 	}: RegisterCafeDto): string {
 		return new Parameter({
-			regOrder: '',
+			regOrder: 정렬번호,
 			name: 이름,
 			enterDate: 입영일.replaceAll('-', ''),
 			birth: 생년월일.replaceAll('-', ''),
@@ -45,6 +46,7 @@ export class RegisterCafeRequester {
 			traineeRelationshipCd: 관계CodeMap[관계],
 		}).toString();
 	}
+
 
 	private createOptions(session: TheCampSession): AxiosRequestConfig {
 		return {
@@ -73,6 +75,7 @@ export class RegisterCafeRequester {
 	}
 }
 export interface RegisterCafeDto {
+    정렬번호: string;
 	이름: string;
 	입영부대: 입영부대;
 	군종: 군종;

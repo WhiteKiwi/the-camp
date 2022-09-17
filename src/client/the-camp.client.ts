@@ -31,7 +31,7 @@ export class TheCampClient {
 			if (soldier.hasCafe) continue;
 			// 가입 안되어있으면 가입시켜~~
 			await this.theCampService.registerCafe(
-				{ ...soldierInfo, 입영부대TypeCode: soldier.입영부대TypeCode },
+                	{ ...soldierInfo, 정렬번호: soldier.정렬번호, 입영부대TypeCode: soldier.입영부대TypeCode,  },
 				this.session,
 			);
 		}
