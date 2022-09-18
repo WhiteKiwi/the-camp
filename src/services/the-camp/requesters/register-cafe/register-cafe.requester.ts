@@ -26,7 +26,7 @@ export class RegisterCafeRequester {
 	}
 
 	private createPayload({
-        정렬번호,
+		정렬번호,
 		이름,
 		군종,
 		관계,
@@ -75,7 +75,7 @@ export class RegisterCafeRequester {
 	}
 }
 export interface RegisterCafeDto {
-    정렬번호: string;
+	정렬번호: string;
 	이름: string;
 	입영부대: 입영부대;
 	군종: 군종;
