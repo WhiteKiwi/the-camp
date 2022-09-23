@@ -12,15 +12,13 @@ import { TheCampService } from '../services/the-camp';
 
 export class TheCampClient {
 	private readonly theCampService: TheCampService = new TheCampService();
-
 	constructor(private readonly credential: Credential) {}
 
 	private session?: TheCampSession;
-	async fetchSession(): Promise<TheCampSession> {
+	private async fetchSession(): Promise<TheCampSession> {
 		if (!this.session) {
 			this.session = await this.theCampService.login(this.credential);
 		}
-
 		return this.session;
 	}
 
