@@ -4,7 +4,7 @@ Client lib of the camp
 
 # Installation
 ```bash
-$ y add install the-camp
+$ pnpm add the-camp
 ```
 
 # Usage
@@ -20,7 +20,7 @@ async function main() {
 		password: 'password',
 	});
 
-	const soldierIdentifier = await theCampClient.registerSoldier({
+	const { soldierId } = await theCampClient.registerSoldier({
 		성분: '예비군인/훈련병',
 		군종: '육군',
 		이름: '홍길동',
@@ -31,7 +31,7 @@ async function main() {
 		전화번호: '01094862564',
 	});
 
-	await theCampClient.sendLetter(soldierIdentifier, {
+	await theCampClient.sendLetter(soldierId, {
 		작성자: '장지훈',
 		제목: `내용은 곧 제목22`,
 		내용: `제목은 곧 내용`,
