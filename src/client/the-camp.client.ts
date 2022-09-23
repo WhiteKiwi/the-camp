@@ -12,32 +12,41 @@ import { TheCampService } from '../services/the-camp';
 
 export class TheCampClient {
 	private readonly theCampService: TheCampService = new TheCampService();
-	private session!: TheCampSession;
 
-	async login(credential: Credential): Promise<void> {
-		this.session = await this.theCampService.login(credential);
-	}
+	constructor(private readonly credential: Credential) {}
 
-	async registerSoldier(soldierInfo: SoldierInfo): Promise<SoldierIdentifier> {
-		if (!this.isLoggedIn()) {
-			throw new Error('로그인 후에 군인등록이 가능합니다.');
+	private session?: TheCampSession;
+	async fetchSession(): Promise<TheCampSession> {
+		if (!this.session) {
+			this.session = await this.theCampService.login(this.credential);
 		}
 
-		await this.theCampService.registerSoldier(soldierInfo, this.session);
-		const soldiers = await this.theCampService.fetchSoldiers(this.session);
+		return this.session;
+	}
+
+	async registerSoldier(
+		soldierInfo: SoldierInfo,
+	): Promise<{ soldierId: string }> {
+		const session = await this.fetchSession();
+		await this.theCampService.registerSoldier(soldierInfo, session);
+		const soldiers = await this.theCampService.fetchSoldiers(session);
 
 		for (const soldier of soldiers) {
 			// 카페 가입되어 있으면 스킵
 			if (soldier.hasCafe) continue;
 			// 가입 안되어있으면 가입시켜~~
 			await this.theCampService.registerCafe(
-                	{ ...soldierInfo, 정렬번호: soldier.정렬번호, 입영부대TypeCode: soldier.입영부대TypeCode,  },
-				this.session,
+				{
+					...soldierInfo,
+					정렬번호: soldier.정렬번호,
+					입영부대TypeCode: soldier.입영부대TypeCode,
+				},
+				session,
 			);
 		}
 
 		const cafeRegisteredSoldiers = await this.theCampService.fetchSoldiers(
-			this.session,
+			session,
 		);
 		const soldier = cafeRegisteredSoldiers
 			.filter((soldier) => soldier.hasCafe)
@@ -63,32 +72,42 @@ export class TheCampClient {
 				입영부대Code: soldier.입영부대Code,
 				입영부대EduId: soldier.입영부대EduId,
 			},
-			this.session,
+			session,
 		);
 
-		return {
+		const soldierId = this.createSoldierId({
 			훈련병Id,
 			입영부대: soldierInfo.입영부대,
 			입영부대EduId: soldier.입영부대EduId,
-		};
+		});
+		return { soldierId };
 	}
 
-	async sendLetter(
-		soldierIdentifier: SoldierIdentifier,
-		letterInfo: LetterInfo,
-	): Promise<void> {
-		if (!this.isLoggedIn()) {
-			throw new Error('로그인 후에 위문편지 전송이 가능합니다.');
-		}
-
+	async sendLetter(soldierId: string, letterInfo: LetterInfo): Promise<void> {
+		const soldierIdentifier = this.parseSoldierId(soldierId);
+		const session = await this.fetchSession();
 		await this.theCampService.sendLetter(
 			{ ...soldierIdentifier, ...letterInfo },
-			this.session,
+			session,
 		);
 	}
 
-	isLoggedIn(): boolean {
-		return Boolean(this.session);
+	private createSoldierId({
+		입영부대,
+		입영부대EduId,
+		훈련병Id,
+	}: SoldierIdentifier): string {
+		return `${입영부대}-${입영부대EduId}-${훈련병Id}`;
+	}
+
+	private parseSoldierId(soldierId: string): SoldierIdentifier {
+		const [입영부대, 입영부대EduId, 훈련병Id] = soldierId.split('-');
+		// TODO: validation
+		return {
+			입영부대: 입영부대 as 입영부대,
+			입영부대EduId,
+			훈련병Id,
+		};
 	}
 }
 
