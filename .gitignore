@@ -3,6 +3,7 @@
 
 # compiled output
 /lib
+/esm
 /node_modules
 
 # Logs

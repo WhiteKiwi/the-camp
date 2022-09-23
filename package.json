@@ -1,18 +1,21 @@
 {
 	"name": "the-camp",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
+	"module": "esm/index.js",
 	"repository": "git@github.com:whitekiwi/the-camp.git",
 	"author": "Whitekiwi <jh145478@gmail.com>",
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"lint": "eslint \"{{src}/**/*.ts,**.js}\" --fix",
-		"test": "jest --forceExit --testPathIgnorePatterns='.e2e.*'",
+		"test": "jest --testPathIgnorePatterns='.e2e.*'",
 		"test:watch": "jest --watch --testPathIgnorePatterns='.e2e.*'",
-		"test:cov": "jest --coverage --forceExit --testPathIgnorePatterns='.e2e.*'",
-		"prebuild": "rimraf ./lib",
-		"build": "ttsc -p tsconfig.build.json",
-		"script": "ts-node .scripts/index.ts"
+		"test:cov": "jest --coverage --testPathIgnorePatterns='.e2e.*'",
+		"prebuild": "rimraf ./lib ./esm",
+		"build": "ttsc -p tsconfig.build.json && ttsc -p tsconfig.esm.json"
 	},
 	"dependencies": {
 		"axios": "^0.26.0"
@@ -20,7 +23,7 @@
 	"devDependencies": {
 		"@kiwi-lib/eslint-config": "^1",
 		"@types/jest": "^27.4.1",
-		"@types/node": "^17.0.21",
+		"@types/node": "^16",
 		"dotenv": "^16.0.0",
 		"jest": "^27.5.1",
 		"rimraf": "^3.0.2",
@@ -41,7 +44,9 @@
 		"kiwi-lib"
 	],
 	"files": [
-		"lib"
+		"lib",
+		"esm",
+		"src"
 	],
 	"prettier": "@kiwi-lib/eslint-config/prettier.config"
 }
