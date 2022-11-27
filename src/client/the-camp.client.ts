@@ -1,4 +1,4 @@
-import { TheCampSession } from '@common/types';
+import { TheCampSession } from '../common/types';
 import {
 	Credential,
 	관계,
@@ -6,8 +6,7 @@ import {
 	성분,
 	입영부대,
 	입영부대CodeMap,
-} from '@core/types';
-
+} from '../core/types';
 import { TheCampService } from '../services/the-camp';
 
 export class TheCampClient {

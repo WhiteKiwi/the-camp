@@ -1,8 +1,8 @@
-import { TheCampSession } from '@common/types';
-import { Parameter } from '@core/http';
-import { Credential } from '@core/types';
 import axios, { AxiosRequestConfig } from 'axios';
 
+import { TheCampSession } from '../../../../common/types';
+import { Parameter } from '../../../../core/http';
+import { Credential } from '../../../../core/types';
 import { parseLogin } from './parse-login';
 
 export class LoginRequester {

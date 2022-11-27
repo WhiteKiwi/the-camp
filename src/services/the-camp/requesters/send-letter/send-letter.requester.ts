@@ -1,8 +1,8 @@
-import { TheCampSession } from '@common/types';
-import { Parameter } from '@core/http';
-import { 입영부대, 입영부대CodeMap } from '@core/types';
 import axios, { AxiosRequestConfig } from 'axios';
 
+import { TheCampSession } from '../../../../common/types';
+import { Parameter } from '../../../../core/http';
+import { 입영부대, 입영부대CodeMap } from '../../../../core/types';
 import { assertsResponse } from './asserts-response';
 
 export class SendLetterRequester {

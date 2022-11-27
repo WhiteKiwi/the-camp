@@ -1,6 +1,5 @@
-import { TheCampSession } from '@common/types';
-import { Credential } from '@core/types';
-
+import { TheCampSession } from '../../common/types';
+import { Credential } from '../../core/types';
 import {
 	FetchSoldierDto,
 	FetchSoldierRawInfo,

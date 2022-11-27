@@ -1,5 +1,7 @@
-import { TheCampSession } from '@common/types';
-import { Parameter } from '@core/http';
+import axios, { AxiosRequestConfig } from 'axios';
+
+import { TheCampSession } from '../../../../common/types';
+import { Parameter } from '../../../../core/http';
 import {
 	관계,
 	관계CodeMap,
@@ -9,9 +11,7 @@ import {
 	성분CodeMap,
 	입영부대,
 	입영부대CodeMap,
-} from '@core/types';
-import axios, { AxiosRequestConfig } from 'axios';
-
+} from '../../../../core/types';
 import { assertsResponse } from './asserts-response';
 
 export class RegisterSoldierRequester {

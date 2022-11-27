@@ -1,5 +1,6 @@
-import { extractInnerTexts } from '@core/string';
 import { AxiosResponse } from 'axios';
+
+import { extractInnerTexts } from '../../../../core/string';
 
 export type FetchSoldierRawInfo =
 	| {

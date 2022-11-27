@@ -1,6 +1,6 @@
-import { TheCampSession } from '@common/types';
 import axios, { AxiosRequestConfig } from 'axios';
 
+import { TheCampSession } from '../../../../common/types';
 import { FetchSoldierRawInfo, parseSoldiers } from './parse-soldiers';
 
 export class FetchSoldiersRequester {

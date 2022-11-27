@@ -1,5 +1,7 @@
-import { TheCampSession } from '@common/types';
-import { Parameter } from '@core/http';
+import axios, { AxiosRequestConfig } from 'axios';
+
+import { TheCampSession } from '../../../../common/types';
+import { Parameter } from '../../../../core/http';
 import {
 	관계,
 	관계CodeMap,
@@ -7,9 +9,7 @@ import {
 	군종CodeMap,
 	입영부대,
 	입영부대CodeMap,
-} from '@core/types';
-import axios, { AxiosRequestConfig } from 'axios';
-
+} from '../../../../core/types';
 import { assertsResponse } from './asserts-response';
 
 export class RegisterCafeRequester {
@@ -46,7 +46,6 @@ export class RegisterCafeRequester {
 			traineeRelationshipCd: 관계CodeMap[관계],
 		}).toString();
 	}
-
 
 	private createOptions(session: TheCampSession): AxiosRequestConfig {
 		return {

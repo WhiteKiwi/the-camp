@@ -1,6 +1,6 @@
 {
 	"name": "the-camp",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
 	"module": "esm/index.js",
@@ -15,7 +15,7 @@
 		"test:watch": "jest --watch --testPathIgnorePatterns='.e2e.*'",
 		"test:cov": "jest --coverage --testPathIgnorePatterns='.e2e.*'",
 		"prebuild": "rimraf ./lib ./esm",
-		"build": "ttsc -p tsconfig.build.json && ttsc -p tsconfig.esm.json"
+		"build": "tsc -p tsconfig.build.json && tsc -p tsconfig.esm.json"
 	},
 	"dependencies": {
 		"axios": "^0.26.0"
@@ -30,7 +30,6 @@
 		"ts-jest": "^27.1.3",
 		"ts-node": "^10.5.0",
 		"tsconfig-paths": "^3.12.0",
-		"ttypescript": "^1.5.13",
 		"typescript": "^4.6.2",
 		"typescript-transform-paths": "^3.3.1"
 	},

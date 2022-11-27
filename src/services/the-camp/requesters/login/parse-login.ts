@@ -1,6 +1,7 @@
-import { TheCampSession } from '@common/types';
-import { Cookie } from '@core/http';
 import { AxiosResponse } from 'axios';
+
+import { TheCampSession } from '../../../../common/types';
+import { Cookie } from '../../../../core/http';
 
 export function parseLogin(response: AxiosResponse): TheCampSession {
 	assertsResponse(response);

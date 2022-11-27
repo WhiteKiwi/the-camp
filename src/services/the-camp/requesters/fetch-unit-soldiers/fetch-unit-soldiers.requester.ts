@@ -1,7 +1,7 @@
-import { TheCampSession } from '@common/types';
-import { Parameter } from '@core/http';
 import axios, { AxiosRequestConfig } from 'axios';
 
+import { TheCampSession } from '../../../../common/types';
+import { Parameter } from '../../../../core/http';
 import {
 	FetchUnitSoldierRawInfo,
 	parseUnitSoldiers,

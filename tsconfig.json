@@ -18,14 +18,6 @@
 		"moduleResolution": "node",
 		"strict": true,
 		"noImplicitAny": true,
-		"noUnusedLocals": true,
-		"paths": {
-			"@core/*": ["./src/core/*"],
-			"@common/*": ["./src/common/*"]
-		},
-		// Transform paths in output
-		"plugins": [
-			{ "transform": "typescript-transform-paths", "afterDeclarations": true }
-		]
+		"noUnusedLocals": true
 	}
 }
