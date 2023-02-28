@@ -13,11 +13,9 @@ $ pnpm add the-camp
 import { TheCampClient } from 'the-camp';
 
 async function main() {
-	const theCampClient = new TheCampClient();
-
-	await theCampClient.login({
-		id: 'email@test.com',
-		password: 'password',
+	const theCampClient = new TheCampClient({
+		id: process.env.ID!,
+		password: process.env.PASSWORD!,
 	});
 
 	const { soldierId } = await theCampClient.registerSoldier({
