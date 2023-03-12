@@ -94,11 +94,11 @@ export class TheCampClient {
 		입영부대EduId,
 		훈련병Id,
 	}: SoldierIdentifier): string {
-		return `${입영부대}-${입영부대EduId}-${훈련병Id}`;
+		return `${입영부대}#${입영부대EduId}#${훈련병Id}`;
 	}
 
 	private parseSoldierId(soldierId: string): SoldierIdentifier {
-		const [입영부대, 입영부대EduId, 훈련병Id] = soldierId.split('-');
+		const [입영부대, 입영부대EduId, 훈련병Id] = soldierId.split('#');
 		// TODO: validation
 		return {
 			입영부대: 입영부대 as 입영부대,

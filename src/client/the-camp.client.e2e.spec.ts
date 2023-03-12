@@ -16,7 +16,7 @@ describe('TheCampClient e2e', () => {
 			관계: '팬',
 			생년월일: '2001-11-26',
 			입영일: '2022-02-14',
-			전화번호: '01094862564',
+			전화번호: '01012341234',
 		});
 
 		await theCampClient.sendLetter(soldierId, {
